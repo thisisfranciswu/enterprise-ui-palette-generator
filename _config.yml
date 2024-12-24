@@ -40,13 +40,16 @@ github_username:  thisisfranciswu
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
-# exclude:
+exclude:
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
 #   - Gemfile
 #   - Gemfile.lock
-#   - node_modules/
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - webpack.config.js
 #   - vendor/bundle/
 #   - vendor/cache/
 #   - vendor/gems/
