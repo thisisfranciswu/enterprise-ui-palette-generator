@@ -1,0 +1,16 @@
+body {
+  font-family: sans-serif;
+  line-height: 1.6;
+}
+
+#palette {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  div {
+    width: 50px;
+    height: 50px;
+    border: 1px solid;
+  }
+}
