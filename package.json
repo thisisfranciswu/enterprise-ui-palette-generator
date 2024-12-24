@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "apca-w3": "^0.1.9",
+    "chroma-js": "^3.1.2",
     "webpack": "^5.97.1"
   },
   "scripts": {
