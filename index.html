@@ -23,10 +23,28 @@
 
   <main>
 
-    <label for="baseColor">Enter a Base Color:</label>
-    <input type="text" id="baseColor" placeholder="#000000">
-    <button id="generateBtn">Generate Palette</button>
-    <div id="palette"></div>
+    <form>
+      <label for="accentColor">Accent</label>
+      <input type="text" id="accentColor">
+      <button id="generateBtn">Generate</button>
+    </form>
+    <div id="palette">
+      <div id="baseline">
+        <button id="nonContentBaseline"></button>
+        <button id="contentBaseline"></button>
+      </div>
+      <div id="background">
+        <button id="canvas"></button>
+        <button id="card"></button>
+      </div>
+      <div id="accent">
+        <button id="nonContentFaint"></button>
+        <button id="nonContentSubdued"></button>
+        <button id="nonContentDefault"></button>
+        <button id="contentSubdued"></button>
+        <button id="contentDefault"></button>
+      </div>
+    </div>
 
   </main>
 
