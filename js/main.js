@@ -122,7 +122,6 @@ function setColor(color, $swatch, cssVariable) {
   root.style.setProperty(cssVariable, color);
 }
 
-
 function generatePalette() {
 
   const accentColor = document.getElementById('accentColor').value.trim();
@@ -143,31 +142,31 @@ function generatePalette() {
   var cardColor = adjustColorForContrast(accentColor, "#FFF", cardContrast);
   setColor(cardColor, $card, '--card-color');
 
-  // Establish baseline colors
-  var $nonContentBaseline = $("#nonContentBaseline span");
-  var nonContentBaselineColor = adjustColorForContrast(accentColor, cardColor, wcagNonContentContrast);
-  $nonContentBaseline.css("background-color", nonContentBaselineColor);
-  var $contentBaseline = $("#contentBaseline span");
-  var contentBaselineColor = adjustColorForContrast(accentColor, cardColor, wcagContentContrast);
-  $contentBaseline.css("background-color", contentBaselineColor);
+  // Establish accent baseline colors
+  var $accentNonContentBaseline = $("#accentNonContentBaseline span");
+  var accentNonContentBaselineColor = adjustColorForContrast(accentColor, cardColor, wcagNonContentContrast);
+  $accentNonContentBaseline.css("background-color", accentNonContentBaselineColor);
+  var $accentContentBaseline = $("#accentContentBaseline span");
+  var accentContentBaselineColor = adjustColorForContrast(accentColor, cardColor, wcagContentContrast);
+  $accentContentBaseline.css("background-color", accentContentBaselineColor);
 
-  // Establish non-content colors
-  var $nonContentStrong = $("#nonContentStrong span");
-  var nonContentStrongColor = adjustColorForContrast(nonContentBaselineColor, nonContentBaselineColor, defaultContrast);
-  $nonContentStrong.css("background-color", nonContentStrongColor);
-  var $nonContentSubdued = $("#nonContentSubdued span");
-  var nonContentSubduedColor = adjustColorForContrast(nonContentStrongColor, cardColor, wcagNonContentContrast, true);
-  $nonContentSubdued.css("background-color", nonContentSubduedColor);
-  var $nonContentFaint = $("#nonContentFaint span");
-  var nonContentFaintColor = adjustColorForContrast(nonContentStrongColor, cardColor, faintContrast, true);
-  $nonContentFaint.css("background-color", nonContentFaintColor);
+  // Establish accent non-content colors
+  var $accentNonContentStrong = $("#accentNonContentStrong span");
+  var accentNonContentStrongColor = adjustColorForContrast(accentNonContentBaselineColor, accentNonContentBaselineColor, defaultContrast);
+  $accentNonContentStrong.css("background-color", accentNonContentStrongColor);
+  var $accentNonContentSubdued = $("#accentNonContentSubdued span");
+  var accentNonContentSubduedColor = adjustColorForContrast(accentNonContentStrongColor, cardColor, wcagNonContentContrast, true);
+  $accentNonContentSubdued.css("background-color", accentNonContentSubduedColor);
+  var $accentNonContentFaint = $("#accentNonContentFaint span");
+  var accentNonContentFaintColor = adjustColorForContrast(accentNonContentStrongColor, cardColor, faintContrast, true);
+  $accentNonContentFaint.css("background-color", accentNonContentFaintColor);
 
-  // Establish content colors
-  var $contentStrong = $("#contentStrong span");
-  var contentStrongColor = adjustColorForContrast(contentBaselineColor, contentBaselineColor, defaultContrast);
-  $contentStrong.css("background-color", contentStrongColor);
-  var $contentSubduedColor = $("#contentSubdued span");
-  var contentSubduedColor = adjustColorForContrast(contentStrongColor, cardColor, wcagContentContrast, true);
-  $contentSubduedColor.css("background-color", contentSubduedColor);
+  // Establish accent content colors
+  var $accentContentStrong = $("#accentContentStrong span");
+  var accentContentStrongColor = adjustColorForContrast(accentContentBaselineColor, accentContentBaselineColor, defaultContrast);
+  $accentContentStrong.css("background-color", accentContentStrongColor);
+  var $accentContentSubdued = $("#accentContentSubdued span");
+  var accentContentSubduedColor = adjustColorForContrast(accentContentStrongColor, cardColor, wcagContentContrast, true);
+  $accentContentSubdued.css("background-color", accentContentSubduedColor);
 
 }
