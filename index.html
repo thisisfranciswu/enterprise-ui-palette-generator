@@ -31,26 +31,67 @@
       <input type="text" id="accentColor">
       <button id="generateBtn">Generate</button>
     </form>
+
     <div id="palette">
-      <div id="accent">
-        <span class="label">Seed</span>
-        {% include swatch.html id="seed" %}
+
+      <div id="seed">
+        <figure class="color-swatch">
+          <figcaption>Seed</figcaption>
+          {% include swatch.html id="seed" %}
+        </figure>
       </div>
-      <div id="backgrounds">
-        <span class="label">Backgrounds</span>
-        {% include swatch.html id="canvas" %}
-        {% include swatch.html id="card" %}
+
+      <div id="backgrounds" class="row ui-swatches">
+        <figure class="color-swatch">
+          <figcaption>Canvas</figcaption>
+          {% include swatch.html id="canvas" %}
+        </figure>
+        <figure class="color-swatch">
+          <figcaption>Card</figcaption>
+          {% include swatch.html id="card" %}
+        </figure>
       </div>
-      <div id="baseline">
-        {% include swatch.html id="nonContentBaseline" %}
-        {% include swatch.html id="contentBaseline" %}
-      </div>
-      <div id="accent">
-        {% include swatch.html id="nonContentFaint" %}
-        {% include swatch.html id="nonContentSubdued" %}
-        {% include swatch.html id="nonContentDefault" %}
-        {% include swatch.html id="contentSubdued" %}
-        {% include swatch.html id="contentDefault" %}
+
+      <div id="nonContentAndContent" class="row">
+
+        <div id="nonContentGroup" class="col">
+          <figure class="color-swatch">
+            <figcaption>Non-Content Baseline</figcaption>
+            {% include swatch.html id="nonContentBaseline" %}
+          </figure>
+          <div class="row ui-swatches">
+            <figure class="color-swatch">
+              <figcaption>Non-Content Faint</figcaption>
+              {% include swatch.html id="nonContentFaint" %}
+            </figure>
+            <figure class="color-swatch">
+              <figcaption>Non-Content Subdued</figcaption>
+              {% include swatch.html id="nonContentSubdued" %}
+            </figure>
+            <figure class="color-swatch">
+              <figcaption>Non-Content Strong</figcaption>
+              {% include swatch.html id="nonContentStrong" %}
+            </figure>
+          </div>
+        </div>
+
+        <div id="contentGroup" class="col">
+          <figure class="color-swatch">
+            <figcaption>Content Baseline</figcaption>
+            {% include swatch.html id="contentBaseline" %}
+          </figure>
+          <div class="row ui-swatches">
+            <figure class="color-swatch">
+              <figcaption>Content Subdued</figcaption>
+              {% include swatch.html id="contentSubdued" %}
+            </figure>
+            <figure class="color-swatch">
+              <figcaption>Content Strong</figcaption>
+              {% include swatch.html id="contentStrong" %}
+            </figure>
+          </div>
+        </div>
+
       </div>
     </div>
 
