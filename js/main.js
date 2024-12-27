@@ -1,4 +1,5 @@
 import chroma from 'chroma-js';
+import $ from 'jquery';
 
 const wcagNonContentContrast = 3;
 const wcagContentContrast = 4.5;
@@ -16,19 +17,37 @@ function adjustColorForContrast(fgColor, bgColor, targetContrast, reduceOpacity 
 
   if (!reduceOpacity) {
 
-    // Adjust luminance approach
-    let lowerBound = 0 + precision; // Minimum luminance for foreground
-    let upperBound = 1 - precision; // Maximum luminance for foreground
+    let fgLuminance = chroma(fgColor).luminance(); // Get foreground luminance
 
-    // Get the current contrast ratio function
+    // Function to calculate contrast ratio
     const getContrast = (fgLuminance) => {
       const lighter = Math.max(fgLuminance, bgLuminance);
       const darker = Math.min(fgLuminance, bgLuminance);
       return (lighter + 0.05) / (darker + 0.05);
     };
 
-    // Perform a binary search for the luminance value
-    let adjustedLuminance = chroma(fgColor).luminance();
+    // If foreground and background colors are identical
+    if (chroma(fgColor).hex() === chroma(bgColor).hex()) {
+      if (targetContrast <= 1) {
+        return fgColor; // No adjustment needed since contrast ratio of 1 is already achieved
+      } else {
+        // Adjust luminance to achieve the desired contrast ratio
+        while (getContrast(fgLuminance) < targetContrast) {
+          fgLuminance -= precision;
+          if (fgLuminance < 0) {
+            fgLuminance = 0;
+            break;
+          }
+        }
+        return chroma(fgColor).luminance(fgLuminance).hex();
+      }
+    }
+
+    // Adjust luminance approach using binary search
+    let lowerBound = 0; // Minimum luminance for foreground
+    let upperBound = 1; // Maximum luminance for foreground
+    let adjustedLuminance = fgLuminance;
+
     while (upperBound - lowerBound > precision) {
       adjustedLuminance = (lowerBound + upperBound) / 2;
       const contrast = getContrast(adjustedLuminance);
@@ -87,9 +106,9 @@ function adjustColorForContrast(fgColor, bgColor, targetContrast, reduceOpacity 
 }
 
 // Insert the random color value into the text field
-document.getElementById('accentColor').value = chroma.random().hex();
+$('#accentColor').val(chroma.random().hex());
 
-document.getElementById('generateBtn').addEventListener('click', (e) => {
+$('#generateBtn').on('click', function(e) {
 
   const accentColor = document.getElementById('accentColor').value.trim();
   const canvasContrast = 1.1;
@@ -97,60 +116,45 @@ document.getElementById('generateBtn').addEventListener('click', (e) => {
   const faintContrast = 1.1;
   const defaultContrast = 1.7;
 
-  // Establish baseline colors
-  const nonContentBaseline = document.getElementById('nonContentBaseline');
-  const nonContentBaselineColor = adjustColorForContrast(accentColor, "#FFF", wcagNonContentContrast);
-  nonContentBaseline.style.backgroundColor = nonContentBaselineColor;
-  console.log(nonContentBaselineColor);
-  const contentBaseline = document.getElementById('contentBaseline');
-  const contentBaselineColor = adjustColorForContrast(accentColor, "#FFF", wcagContentContrast);
-  contentBaseline.style.backgroundColor = contentBaselineColor;
-  console.log(contentBaselineColor);
+  // Display seed color
+  var $seed = $("#seed span");
+  $seed.css("background-color", accentColor);
 
   // Establish background colors
-  const canvas = document.getElementById('canvas');
-  const canvasColor = adjustColorForContrast(nonContentBaselineColor, "#FFF", canvasContrast);
-  canvas.style.backgroundColor = canvasColor;
-  console.log(canvasColor);
-  const card = document.getElementById('card');
-  const cardColor = adjustColorForContrast(nonContentBaselineColor, "#FFF", cardContrast);
-  card.style.backgroundColor = cardColor;
-  console.log(cardColor);
+  var $canvas = $("#canvas span");
+  var canvasColor = adjustColorForContrast(accentColor, "#FFF", canvasContrast);
+  $canvas.css("background-color", canvasColor);
+  var $card = $("#card span");
+  var cardColor = adjustColorForContrast(accentColor, "#FFF", cardContrast);
+  $card.css("background-color", cardColor);
+
+  // Establish baseline colors
+  var $nonContentBaseline = $("#nonContentBaseline span");
+  var nonContentBaselineColor = adjustColorForContrast(accentColor, cardColor, wcagNonContentContrast);
+  $nonContentBaseline.css("background-color", nonContentBaselineColor);
+  var $contentBaseline = $("#contentBaseline span");
+  var contentBaselineColor = adjustColorForContrast(accentColor, cardColor, wcagContentContrast);
+  $contentBaseline.css("background-color", contentBaselineColor);
 
   // Establish non-content colors
-  const nonContentFaint = document.getElementById('nonContentFaint');
-  const nonContentFaintColor = adjustColorForContrast(nonContentBaselineColor, cardColor, canvasContrast);
-  nonContentFaint.style.backgroundColor = nonContentFaintColor;
-  console.log(nonContentFaintColor);
-  const nonContentDefault = document.getElementById('nonContentDefault');
-  const nonContentDefaultColor = adjustColorForContrast(nonContentBaselineColor, nonContentBaselineColor, defaultContrast);
-  nonContentDefault.style.backgroundColor = nonContentDefaultColor;
-  console.log(nonContentDefaultColor);
-  const nonContentSubdued = document.getElementById('nonContentSubdued');
-  const nonContentSubduedColor = adjustColorForContrast(nonContentDefaultColor, cardColor, wcagNonContentContrast, true);
-  nonContentSubdued.style.backgroundColor = nonContentSubduedColor;
+  var $nonContentDefault = $("#nonContentDefault span");
+  var nonContentDefaultColor = adjustColorForContrast(nonContentBaselineColor, nonContentBaselineColor, defaultContrast);
+  $nonContentDefault.css("background-color", nonContentDefaultColor);
+  var $nonContentSubdued = $("#nonContentSubdued span");
+  var nonContentSubduedColor = adjustColorForContrast(nonContentDefaultColor, cardColor, wcagNonContentContrast, true);
   console.log(nonContentSubduedColor);
+  $nonContentSubdued.css("background-color", nonContentSubduedColor);
+  var $nonContentFaint = $("#nonContentFaint span");
+  var nonContentFaintColor = adjustColorForContrast(nonContentDefaultColor, cardColor, faintContrast, true);
+  $nonContentFaint.css("background-color", nonContentFaintColor);
 
   // Establish content colors
-  const contentDefault = document.getElementById('contentDefault');
-  const contentDefaultColor = adjustColorForContrast(contentBaselineColor, contentBaselineColor, defaultContrast);
-  contentDefault.style.backgroundColor = contentDefaultColor;
-  console.log(contentDefaultColor);
-  const contentSubdued = document.getElementById('contentSubdued');
-  const contentSubduedColor = adjustColorForContrast(contentDefaultColor, cardColor, wcagContentContrast, true);
-  contentSubdued.style.backgroundColor = contentSubduedColor;
-  console.log(contentSubduedColor);
-
-  // Example usage
-  console.log("Example usage");
-  console.log(adjustColorForContrast('#6fa14e', '#fff', 3)); // Expected: #71a250
-  console.log(adjustColorForContrast('#6fa14e', '#fff', 4.5)); // Expected: #59823f
-  console.log(adjustColorForContrast('#71a250', '#fff', 1.1)); // Expected: #f1f6ed
-  console.log(adjustColorForContrast('#71a250', '#fff', 1.033)); // Expected: #fafcf9
-  console.log(adjustColorForContrast('#71a250', '#fafcf9', 1.1)); // Expected: #ecf3e8
-  console.log(adjustColorForContrast('#71a250', '#71a250', 1.7)); // Expected: #54783b
-  console.log(adjustColorForContrast('#59823f', '#59823f', 1.7)); // Previously incorrect, now handled
-
+  var $contentDefault = $("#contentDefault span");
+  var contentDefaultColor = adjustColorForContrast(contentBaselineColor, contentBaselineColor, defaultContrast);
+  $contentDefault.css("background-color", contentDefaultColor);
+  var $contentSubduedColor = $("#contentSubdued span");
+  var contentSubduedColor = adjustColorForContrast(contentDefaultColor, cardColor, wcagContentContrast, true);
+  $contentSubduedColor.css("background-color", contentSubduedColor);
 
   e.preventDefault();
 
