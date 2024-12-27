@@ -19,30 +19,95 @@ main {
 
 #palette {
 
-  .label {
-    display: block;
-    font-size: 0.875rem;
-    text-align: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .color-swatch {
+    margin: 0;
+    figcaption {
+      font-size: 0.75rem;
+      line-height: 1;
+      text-align: center;
+      padding-bottom: 0.75rem;
+      margin-bottom: 0.75rem;
+      color: rgba(81, 81, 81, 0.79);
+      position: relative;
+      &:after {
+        display: block;
+        content: " ";
+        height: 1px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-image: linear-gradient(to right, transparent, rgba(107, 107, 107, 0.73), transparent);
+      }
+    }
   }
 
-  button {
-    width: 50px;
-    height: 50px;
+  .row {
+    display: flex;
+    flex-direction: row;
+    gap: 0.125rem;
+    > * {
+      flex-grow: 1;
+    }
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .swatch {
+    width: 100%;
+    height: 1rem;
     border: none;
     padding: 0;
     overflow: hidden;
-    background-color: #FFF;
-    background-image: url("../images/transparency_grid_light.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: 100% 0;
     border-radius: 4px;
+    position: relative;
     span {
       display: block;
       height: 100%;
       width: 100%;
+      z-index: 2;
+      position: relative;
+    }
+    &:after {
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: 100%;
+      content: " ";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      background: conic-gradient(
+        #fff 90deg,
+        rgba(107, 107, 107, 0.075) 90deg 180deg,
+        #fff 180deg 270deg,
+        rgba(107, 107, 107, 0.075) 270deg
+      );
+      background-repeat: repeat;
+      background-size: 1rem 1rem;
+      background-position: top left;
     }
   }
+  .ui-swatches {
+    .swatch {
+      height: 4rem;
+    }
+  }
+
+  #nonContentGroup {
+    flex-grow: 3;
+  }
+  #contentGroup {
+    flex-grow: 2;
+  }
+
 }
 

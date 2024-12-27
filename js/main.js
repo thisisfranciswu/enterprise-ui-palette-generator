@@ -108,7 +108,14 @@ function adjustColorForContrast(fgColor, bgColor, targetContrast, reduceOpacity 
 // Insert the random color value into the text field
 $('#accentColor').val(chroma.random().hex());
 
+generatePalette();
+
 $('#generateBtn').on('click', function(e) {
+  generatePalette();
+  e.preventDefault();
+});
+
+function generatePalette() {
 
   const accentColor = document.getElementById('accentColor').value.trim();
   const canvasContrast = 1.1;
@@ -137,25 +144,23 @@ $('#generateBtn').on('click', function(e) {
   $contentBaseline.css("background-color", contentBaselineColor);
 
   // Establish non-content colors
-  var $nonContentDefault = $("#nonContentDefault span");
-  var nonContentDefaultColor = adjustColorForContrast(nonContentBaselineColor, nonContentBaselineColor, defaultContrast);
-  $nonContentDefault.css("background-color", nonContentDefaultColor);
+  var $nonContentStrong = $("#nonContentStrong span");
+  var nonContentStrongColor = adjustColorForContrast(nonContentBaselineColor, nonContentBaselineColor, defaultContrast);
+  $nonContentStrong.css("background-color", nonContentStrongColor);
   var $nonContentSubdued = $("#nonContentSubdued span");
-  var nonContentSubduedColor = adjustColorForContrast(nonContentDefaultColor, cardColor, wcagNonContentContrast, true);
+  var nonContentSubduedColor = adjustColorForContrast(nonContentStrongColor, cardColor, wcagNonContentContrast, true);
   console.log(nonContentSubduedColor);
   $nonContentSubdued.css("background-color", nonContentSubduedColor);
   var $nonContentFaint = $("#nonContentFaint span");
-  var nonContentFaintColor = adjustColorForContrast(nonContentDefaultColor, cardColor, faintContrast, true);
+  var nonContentFaintColor = adjustColorForContrast(nonContentStrongColor, cardColor, faintContrast, true);
   $nonContentFaint.css("background-color", nonContentFaintColor);
 
   // Establish content colors
-  var $contentDefault = $("#contentDefault span");
-  var contentDefaultColor = adjustColorForContrast(contentBaselineColor, contentBaselineColor, defaultContrast);
-  $contentDefault.css("background-color", contentDefaultColor);
+  var $contentStrong = $("#contentStrong span");
+  var contentStrongColor = adjustColorForContrast(contentBaselineColor, contentBaselineColor, defaultContrast);
+  $contentStrong.css("background-color", contentStrongColor);
   var $contentSubduedColor = $("#contentSubdued span");
-  var contentSubduedColor = adjustColorForContrast(contentDefaultColor, cardColor, wcagContentContrast, true);
+  var contentSubduedColor = adjustColorForContrast(contentStrongColor, cardColor, wcagContentContrast, true);
   $contentSubduedColor.css("background-color", contentSubduedColor);
 
-  e.preventDefault();
-
-});
+}
