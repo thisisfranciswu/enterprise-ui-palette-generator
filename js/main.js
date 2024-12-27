@@ -3,6 +3,7 @@ import $ from 'jquery';
 
 const wcagNonContentContrast = 3;
 const wcagContentContrast = 4.5;
+const root = document.documentElement;
 
 /**
  * Adjusts the luminance of a foreground color to achieve an exact WCAG contrast ratio against a background color.
@@ -115,6 +116,13 @@ $('#generateBtn').on('click', function(e) {
   e.preventDefault();
 });
 
+function setColor(color, $swatch, cssVariable) {
+  // Sets colors for both a swatch and a CSS variable
+  $swatch.css("background-color", color);
+  root.style.setProperty(cssVariable, color);
+}
+
+
 function generatePalette() {
 
   const accentColor = document.getElementById('accentColor').value.trim();
@@ -130,10 +138,10 @@ function generatePalette() {
   // Establish background colors
   var $canvas = $("#canvas span");
   var canvasColor = adjustColorForContrast(accentColor, "#FFF", canvasContrast);
-  $canvas.css("background-color", canvasColor);
+  setColor(canvasColor, $canvas, '--canvas-color');
   var $card = $("#card span");
   var cardColor = adjustColorForContrast(accentColor, "#FFF", cardContrast);
-  $card.css("background-color", cardColor);
+  setColor(cardColor, $card, '--card-color');
 
   // Establish baseline colors
   var $nonContentBaseline = $("#nonContentBaseline span");
@@ -149,7 +157,6 @@ function generatePalette() {
   $nonContentStrong.css("background-color", nonContentStrongColor);
   var $nonContentSubdued = $("#nonContentSubdued span");
   var nonContentSubduedColor = adjustColorForContrast(nonContentStrongColor, cardColor, wcagNonContentContrast, true);
-  console.log(nonContentSubduedColor);
   $nonContentSubdued.css("background-color", nonContentSubduedColor);
   var $nonContentFaint = $("#nonContentFaint span");
   var nonContentFaintColor = adjustColorForContrast(nonContentStrongColor, cardColor, faintContrast, true);
