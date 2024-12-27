@@ -1,3 +1,6 @@
+---
+---
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,20 +32,25 @@
       <button id="generateBtn">Generate</button>
     </form>
     <div id="palette">
-      <div id="baseline">
-        <button id="nonContentBaseline"></button>
-        <button id="contentBaseline"></button>
+      <div id="accent">
+        <span class="label">Seed</span>
+        {% include swatch.html id="seed" %}
       </div>
-      <div id="background">
-        <button id="canvas"></button>
-        <button id="card"></button>
+      <div id="backgrounds">
+        <span class="label">Backgrounds</span>
+        {% include swatch.html id="canvas" %}
+        {% include swatch.html id="card" %}
+      </div>
+      <div id="baseline">
+        {% include swatch.html id="nonContentBaseline" %}
+        {% include swatch.html id="contentBaseline" %}
       </div>
       <div id="accent">
-        <button id="nonContentFaint"></button>
-        <button id="nonContentSubdued"></button>
-        <button id="nonContentDefault"></button>
-        <button id="contentSubdued"></button>
-        <button id="contentDefault"></button>
+        {% include swatch.html id="nonContentFaint" %}
+        {% include swatch.html id="nonContentSubdued" %}
+        {% include swatch.html id="nonContentDefault" %}
+        {% include swatch.html id="contentSubdued" %}
+        {% include swatch.html id="contentDefault" %}
       </div>
     </div>
 
