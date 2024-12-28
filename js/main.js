@@ -77,14 +77,27 @@ function generatePalette() {
   var accentContentSubduedColor = decreaseOpacityToContrast(accentContentStrongColor, cardColor, wcagContentContrast);
   $accentContentSubdued.css("background-color", accentContentSubduedColor);
 
+  // Establish neutral content colors
+  var $neutraltContentStrong = $("#neutralContentStrong span");
+  var desaturatedNeutralContentStrongColor = setSaturation(accentContentStrongColor, neutralSaturation);
+  var neutralContentStrongColor = decreaseLuminanceToContrast(desaturatedNeutralContentStrongColor, blackColor, neutralToAccentContrast);
+  $neutraltContentStrong.css("background-color", neutralContentStrongColor);
+
   // Establish neutral non-content colors
-  // var $neutraltNonContentStrong = $("#neutralNonContentStrong span");
+  var $neutraltNonContentStrong = $("#neutralNonContentStrong span");
+  var accentContentStrongColorLuminance = chroma(accentContentStrongColor).luminance();
+  var accentNonContentStrongColorLuminance = chroma(accentNonContentStrongColor).luminance();
+  var neutralContentStrongColorLuminance = chroma(neutralContentStrongColor).luminance();
+  var neutralStrongAccentLuminance = accentNonContentStrongColorLuminance / accentContentStrongColorLuminance * chroma(neutralContentStrongColor).luminance();
+  var neutralNonContentStrongColor = chroma(neutralContentStrongColor).luminance(neutralStrongAccentLuminance).hex();
+  $neutraltNonContentStrong.css("background-color", neutralNonContentStrongColor);
+
+
+
+
   // var neutralNonContentStrongColor = decreaseLuminanceToContrast(accentNonContentStrongColor, blackColor, neutralToAccentContrast);
   // $neutraltNonContentStrong.css("background-color", neutralNonContentStrongColor);
 
-  // Establish neutral content colors
-  var $neutraltContentStrong = $("#neutralContentStrong span");
-  var neutralContentStrongColor = decreaseLuminanceToContrast(setSaturation(accentContentStrongColor, neutralSaturation), blackColor, neutralToAccentContrast);
-  $neutraltContentStrong.css("background-color", neutralContentStrongColor);
+
 
 }
