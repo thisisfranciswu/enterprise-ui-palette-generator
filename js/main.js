@@ -9,8 +9,8 @@ import { setSaturation } from '../js/setSaturation.js'
 const wcagNonContentContrast = 3;
 const wcagContentContrast = 4.5;
 const root = document.documentElement;
-const white = "#FFF";
-const black = "#000";
+const whiteColor = "#FFF";
+const blackColor = "#000";
 
 // Insert the random color value into the text field
 $('#accentColor').val(chroma.random().hex());
@@ -44,10 +44,10 @@ function generatePalette() {
 
   // Establish background colors
   var $canvas = $("#canvas span");
-  var canvasColor = adjustLuminanceToContrast(accentColor, white, canvasContrast);
+  var canvasColor = adjustLuminanceToContrast(accentColor, whiteColor, canvasContrast);
   setColor(canvasColor, $canvas, '--canvas-color');
   var $card = $("#card span");
-  var cardColor = adjustLuminanceToContrast(accentColor, white, cardContrast);
+  var cardColor = adjustLuminanceToContrast(accentColor, whiteColor, cardContrast);
   setColor(cardColor, $card, '--card-color');
 
   // Establish accent baseline colors
@@ -79,12 +79,12 @@ function generatePalette() {
 
   // Establish neutral non-content colors
   // var $neutraltNonContentStrong = $("#neutralNonContentStrong span");
-  // var neutralNonContentStrongColor = decreaseLuminanceToContrast(accentNonContentStrongColor, black, neutralToAccentContrast);
+  // var neutralNonContentStrongColor = decreaseLuminanceToContrast(accentNonContentStrongColor, blackColor, neutralToAccentContrast);
   // $neutraltNonContentStrong.css("background-color", neutralNonContentStrongColor);
 
   // Establish neutral content colors
   var $neutraltContentStrong = $("#neutralContentStrong span");
-  var neutralContentStrongColor = decreaseLuminanceToContrast(setSaturation(accentContentStrongColor, neutralSaturation), black, neutralToAccentContrast);
+  var neutralContentStrongColor = decreaseLuminanceToContrast(setSaturation(accentContentStrongColor, neutralSaturation), blackColor, neutralToAccentContrast);
   $neutraltContentStrong.css("background-color", neutralContentStrongColor);
 
 }
