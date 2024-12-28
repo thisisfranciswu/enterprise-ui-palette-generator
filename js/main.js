@@ -38,8 +38,7 @@ function generatePalette() {
   const neutralSaturation = 0.333;
 
   // Display seed color
-  var $seed = $("#seed span");
-  $seed.css("background-color", accentColor);
+  setCssColor('--seed-color', accentColor);
 
   // Establish background colors
   var canvasColor = adjustLuminanceToContrast(accentColor, whiteColor, canvasContrast);
@@ -48,62 +47,42 @@ function generatePalette() {
   setCssColor('--card-color', cardColor);
 
   // Establish accent baseline colors
-  var $accentNonContentBaseline = $("#accentNonContentBaseline span");
   var accentNonContentBaselineColor = adjustLuminanceToContrast(accentColor, cardColor, wcagNonContentContrast);
-  $accentNonContentBaseline.css("background-color", accentNonContentBaselineColor);
-  var $accentContentBaseline = $("#accentContentBaseline span");
+  setCssColor('--accentNonContentBaseline-color', accentNonContentBaselineColor);
   var accentContentBaselineColor = adjustLuminanceToContrast(accentColor, cardColor, wcagContentContrast);
-  $accentContentBaseline.css("background-color", accentContentBaselineColor);
+  setCssColor('--accentContentBaseline-color', accentContentBaselineColor);
 
   // Establish accent non-content colors
-  var $accentNonContentStrong = $("#accentNonContentStrong span");
   var accentNonContentStrongColor = adjustLuminanceToContrast(accentNonContentBaselineColor, accentNonContentBaselineColor, strongContrast);
-  $accentNonContentStrong.css("background-color", accentNonContentStrongColor);
-  var $accentNonContentSubdued = $("#accentNonContentSubdued span");
+  setCssColor('--accentNonContentStrong-color', accentNonContentStrongColor);
   var accentNonContentSubduedColor = decreaseOpacityToContrast(accentNonContentStrongColor, cardColor, wcagNonContentContrast);
-  $accentNonContentSubdued.css("background-color", accentNonContentSubduedColor);
-  var $accentNonContentFaint = $("#accentNonContentFaint span");
+  setCssColor('--accentNonContentSubdued-color', accentNonContentSubduedColor);
   var accentNonContentFaintColor = decreaseOpacityToContrast(accentNonContentStrongColor, cardColor, faintContrast);
-  $accentNonContentFaint.css("background-color", accentNonContentFaintColor);
+  setCssColor('--accentNonContentFaint-color', accentNonContentFaintColor);
 
   // Establish accent content colors
-  var $accentContentStrong = $("#accentContentStrong span");
   var accentContentStrongColor = adjustLuminanceToContrast(accentContentBaselineColor, accentContentBaselineColor, strongContrast);
-  $accentContentStrong.css("background-color", accentContentStrongColor);
-  var $accentContentSubdued = $("#accentContentSubdued span");
+  setCssColor('--accentContentStrong-color', accentContentStrongColor);
   var accentContentSubduedColor = decreaseOpacityToContrast(accentContentStrongColor, cardColor, wcagContentContrast);
-  $accentContentSubdued.css("background-color", accentContentSubduedColor);
+  setCssColor('--accentContentSubdued-color', accentContentSubduedColor);
 
   // Establish neutral content colors
-  var $neutraltContentStrong = $("#neutralContentStrong span");
   var desaturatedNeutralContentStrongColor = setSaturation(accentContentStrongColor, neutralSaturation);
   var neutralContentStrongColor = decreaseLuminanceToContrast(desaturatedNeutralContentStrongColor, blackColor, neutralToAccentContrast);
-  $neutraltContentStrong.css("background-color", neutralContentStrongColor);
-  var $neutralContentSubdued = $("#neutralContentSubdued span");
+  setCssColor('--neutralContentStrong-color', neutralContentStrongColor);
   var neutralContentSubduedColor = decreaseOpacityToContrast(neutralContentStrongColor, cardColor, wcagContentContrast);
-  $neutralContentSubdued.css("background-color", neutralContentSubduedColor);
+  setCssColor('--neutralContentSubdued-color', neutralContentSubduedColor);
 
   // Establish neutral non-content colors
-  var $neutraltNonContentStrong = $("#neutralNonContentStrong span");
   var accentContentStrongColorLuminance = chroma(accentContentStrongColor).luminance();
   var accentNonContentStrongColorLuminance = chroma(accentNonContentStrongColor).luminance();
   var neutralContentStrongColorLuminance = chroma(neutralContentStrongColor).luminance();
   var neutralStrongAccentLuminance = accentNonContentStrongColorLuminance / accentContentStrongColorLuminance * chroma(neutralContentStrongColor).luminance();
   var neutralNonContentStrongColor = chroma(neutralContentStrongColor).luminance(neutralStrongAccentLuminance).hex();
-  $neutraltNonContentStrong.css("background-color", neutralNonContentStrongColor);
-  var $neutralNonContentSubdued = $("#neutralNonContentSubdued span");
+  setCssColor('--neutralNonContentStrong-color', neutralNonContentStrongColor);
   var neutralNonContentSubduedColor = decreaseOpacityToContrast(neutralNonContentStrongColor, cardColor, wcagNonContentContrast);
-  $neutralNonContentSubdued.css("background-color", neutralNonContentSubduedColor);
-  var $neutralNonContentFaint = $("#neutralNonContentFaint span");
+  setCssColor('--neutralNonContentSubdued-color', neutralNonContentSubduedColor);
   var neutralNonContentFaintColor = decreaseOpacityToContrast(neutralNonContentStrongColor, cardColor, faintContrast);
-  $neutralNonContentFaint.css("background-color", neutralNonContentFaintColor);
-
-
-
-
-  // var neutralNonContentStrongColor = decreaseLuminanceToContrast(accentNonContentStrongColor, blackColor, neutralToAccentContrast);
-  // $neutraltNonContentStrong.css("background-color", neutralNonContentStrongColor);
-
-
+  setCssColor('--neutralNonContentFaint-color', neutralNonContentFaintColor);
 
 }
