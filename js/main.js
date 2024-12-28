@@ -82,6 +82,9 @@ function generatePalette() {
   var desaturatedNeutralContentStrongColor = setSaturation(accentContentStrongColor, neutralSaturation);
   var neutralContentStrongColor = decreaseLuminanceToContrast(desaturatedNeutralContentStrongColor, blackColor, neutralToAccentContrast);
   $neutraltContentStrong.css("background-color", neutralContentStrongColor);
+  var $neutralContentSubdued = $("#neutralContentSubdued span");
+  var neutralContentSubduedColor = decreaseOpacityToContrast(neutralContentStrongColor, cardColor, wcagContentContrast);
+  $neutralContentSubdued.css("background-color", neutralContentSubduedColor);
 
   // Establish neutral non-content colors
   var $neutraltNonContentStrong = $("#neutralNonContentStrong span");
@@ -91,6 +94,12 @@ function generatePalette() {
   var neutralStrongAccentLuminance = accentNonContentStrongColorLuminance / accentContentStrongColorLuminance * chroma(neutralContentStrongColor).luminance();
   var neutralNonContentStrongColor = chroma(neutralContentStrongColor).luminance(neutralStrongAccentLuminance).hex();
   $neutraltNonContentStrong.css("background-color", neutralNonContentStrongColor);
+  var $neutralNonContentSubdued = $("#neutralNonContentSubdued span");
+  var neutralNonContentSubduedColor = decreaseOpacityToContrast(neutralNonContentStrongColor, cardColor, wcagNonContentContrast);
+  $neutralNonContentSubdued.css("background-color", neutralNonContentSubduedColor);
+  var $neutralNonContentFaint = $("#neutralNonContentFaint span");
+  var neutralNonContentFaintColor = decreaseOpacityToContrast(neutralNonContentStrongColor, cardColor, faintContrast);
+  $neutralNonContentFaint.css("background-color", neutralNonContentFaintColor);
 
 
 
