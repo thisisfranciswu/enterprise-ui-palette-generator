@@ -115,20 +115,21 @@ main {
     flex-grow: 2;
   }
 
-  #canvas > .swatch { background-color: var(--canvas-color); }
-  #card > .swatch { background-color: var(--card-color); }
-  #accentNonContentBaseline > .swatch { background-color: var(--accentNonContentBaseline-color); }
-  #accentContentBaseline > .swatch { background-color: var(--accentContentBaseline-color); }
-  #accentNonContentFaint > .swatch { background-color: var(--accentNonContentFaint-color); }
-  #accentNonContentSubdued > .swatch { background-color: var(--accentNonContentSubdued-color); }
-  #accentNonContentDefault > .swatch { background-color: var(--accentNonContentDefault-color); }
-  #accentContentSubdued > .swatch { background-color: var(--accentContentSubdued-color); }
-  #accentContentDefault > .swatch { background-color: var(--accentContentDefault-color); }
-  #neutralNonContentFaint > .swatch { background-color: var(--neutralNonContentFaint-color); }
-  #neutralNonContentSubdued > .swatch { background-color: var(--neutralNonContentSubdued-color); }
-  #neutralNonContentDefault > .swatch { background-color: var(--neutralNonContentDefault-color); }
-  #neutralContentSubdued > .swatch { background-color: var(--neutralContentSubdued-color); }
-  #neutralContentDefault > .swatch { background-color: var(--neutralContentDefault-color); }
+  #seed > span { background-color: var(--seed-color); }
+  #canvas > span { background-color: var(--canvas-color); }
+  #card > span { background-color: var(--card-color); }
+  #accentNonContentBaseline > span { background-color: var(--accentNonContentBaseline-color); }
+  #accentContentBaseline > span { background-color: var(--accentContentBaseline-color); }
+  #accentNonContentFaint > span { background-color: var(--accentNonContentFaint-color); }
+  #accentNonContentSubdued > span { background-color: var(--accentNonContentSubdued-color); }
+  #accentNonContentStrong > span { background-color: var(--accentNonContentStrong-color); }
+  #accentContentSubdued > span { background-color: var(--accentContentSubdued-color); }
+  #accentContentStrong > span { background-color: var(--accentContentStrong-color); }
+  #neutralNonContentFaint > span { background-color: var(--neutralNonContentFaint-color); }
+  #neutralNonContentSubdued > span { background-color: var(--neutralNonContentSubdued-color); }
+  #neutralNonContentStrong > span { background-color: var(--neutralNonContentStrong-color); }
+  #neutralContentSubdued > span { background-color: var(--neutralContentSubdued-color); }
+  #neutralContentStrong > span { background-color: var(--neutralContentStrong-color); }
 
 }
 
