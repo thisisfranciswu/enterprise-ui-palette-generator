@@ -22,9 +22,8 @@ $('#generateBtn').on('click', function(e) {
   e.preventDefault();
 });
 
-function setColor(color, $swatch, cssVariable) {
+function setCssColor(cssVariable, color) {
   // Sets colors for both a swatch and a CSS variable
-  $swatch.css("background-color", color);
   root.style.setProperty(cssVariable, color);
 }
 
@@ -43,12 +42,10 @@ function generatePalette() {
   $seed.css("background-color", accentColor);
 
   // Establish background colors
-  var $canvas = $("#canvas span");
   var canvasColor = adjustLuminanceToContrast(accentColor, whiteColor, canvasContrast);
-  setColor(canvasColor, $canvas, '--canvas-color');
-  var $card = $("#card span");
+  setCssColor('--canvas-color', canvasColor);
   var cardColor = adjustLuminanceToContrast(accentColor, whiteColor, cardContrast);
-  setColor(cardColor, $card, '--card-color');
+  setCssColor('--card-color', cardColor);
 
   // Establish accent baseline colors
   var $accentNonContentBaseline = $("#accentNonContentBaseline span");
