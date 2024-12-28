@@ -115,6 +115,21 @@ main {
     flex-grow: 2;
   }
 
+  #canvas > .swatch { background-color: var(--canvas-color); }
+  #card > .swatch { background-color: var(--card-color); }
+  #accentNonContentBaseline > .swatch { background-color: var(--accentNonContentBaseline-color); }
+  #accentContentBaseline > .swatch { background-color: var(--accentContentBaseline-color); }
+  #accentNonContentFaint > .swatch { background-color: var(--accentNonContentFaint-color); }
+  #accentNonContentSubdued > .swatch { background-color: var(--accentNonContentSubdued-color); }
+  #accentNonContentDefault > .swatch { background-color: var(--accentNonContentDefault-color); }
+  #accentContentSubdued > .swatch { background-color: var(--accentContentSubdued-color); }
+  #accentContentDefault > .swatch { background-color: var(--accentContentDefault-color); }
+  #neutralNonContentFaint > .swatch { background-color: var(--neutralNonContentFaint-color); }
+  #neutralNonContentSubdued > .swatch { background-color: var(--neutralNonContentSubdued-color); }
+  #neutralNonContentDefault > .swatch { background-color: var(--neutralNonContentDefault-color); }
+  #neutralContentSubdued > .swatch { background-color: var(--neutralContentSubdued-color); }
+  #neutralContentDefault > .swatch { background-color: var(--neutralContentDefault-color); }
+
 }
 
 #canvas {
