@@ -369,7 +369,7 @@ main {
       width: 1.5rem;
       border-radius: 100rem;
       vertical-align: text-bottom;
-      margin: auto;
+      margin: calc(((1rem * 1.6) - 1rem) * 0.5) 0;
       color: inherit;
       background: var(--neutralNonContentSubdued-color);
       box-shadow: none;
