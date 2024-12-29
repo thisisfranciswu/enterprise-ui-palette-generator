@@ -14,6 +14,7 @@ In no particular order, allow user to:
 - [ ] Enjoy responsive layout
 - [ ] Enjoy refined UI
 - [ ] See color values
+- [ ] See favicon
 - [ ] Generate dark mode colors
 - [ ] Select seed color via color picker
 - [ ] Select from preset seed colors
