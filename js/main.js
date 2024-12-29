@@ -34,8 +34,8 @@ function generatePalette() {
   const cardContrast = 1.033;
   const faintContrast = 1.1;
   const strongContrast = 1.7;
-  const neutralToAccentContrast = 1.3;
   const neutralSaturation = 0.333;
+  const neutralToAccentContrast = 1.3;
 
   // Display seed color
   setCssColor('--seed-color', accentColor);
