@@ -13,6 +13,7 @@ In no particular order, allow user to:
 - [ ] Enjoy refactored CSS
 - [ ] Enjoy responsive layout
 - [ ] Enjoy refined UI
+- [ ] See color values
 - [ ] Generate dark mode colors
 - [ ] Select seed color via color picker
 - [ ] Select from preset seed colors
