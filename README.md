@@ -1,6 +1,10 @@
 # Enterprise UI Palette Generator
 
-A tool to automate the generation of accessible enterprise UI color palettes based on a [Medium article](https://uxdesign.cc/a-systematic-approach-to-generating-enterprise-ui-color-palettes-ecaf0c164c17) I wrote. [Try it out](https://thisisfranciswu.com/enterprise-ui-palette-generator/)!
+A tool to automate the generation of accessible enterprise UI color palettes.
+
+Its UI is currently a shameless copy of [Radix UI's custom color palette tool](https://www.radix-ui.com/colors/custom), but its color generation rules are mostly based on those I laid out in a [Medium article I wrote](https://uxdesign.cc/a-systematic-approach-to-generating-enterprise-ui-color-palettes-ecaf0c164c17).
+
+[Try it out](https://thisisfranciswu.com/enterprise-ui-palette-generator/)!
 
 ## To do
 
