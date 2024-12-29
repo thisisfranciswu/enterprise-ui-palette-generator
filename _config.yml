@@ -50,7 +50,7 @@ exclude:
   - package.json
   - package-lock.json
   - webpack.config.js
-#   - vendor/bundle/
+  - vendor/bundle/
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
