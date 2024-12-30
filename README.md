@@ -10,9 +10,9 @@ Its UI is currently a shameless copy of [Radix UI's custom color palette tool](h
 
 In no particular order, allow user to:
 
-- [ ] Enjoy refactored CSS
+- [x] Enjoy refactored CSS
+- [x] Enjoy refined UI
 - [ ] Enjoy responsive layout
-- [ ] Enjoy refined UI
 - [ ] See color values
 - [ ] See favicon
 - [ ] Generate dark mode colors
