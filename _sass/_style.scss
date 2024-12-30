@@ -130,8 +130,8 @@ main {
 
   > .col {
     @include flex-col(var(--space-lg));
-    flex-grow: 1;
-    width: 100%;
+    flex: 1 1 0;
+    min-width: 0;
   }
 
   .card {
@@ -395,7 +395,7 @@ main {
     }
   }
 
-  .btn-toolbar {
+  .toolbar {
     @include flex-row(0);
     @include border-radius("md");
     box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSubdued);
@@ -403,19 +403,19 @@ main {
     .btn-group {
       @include flex-row(0);
       border-right: 1px solid var(--color-neutralNonContentSubdued);
+      .btn {
+        background: none;
+        color: var(--color-neutralContentStrong);
+        padding: var(--space-sm);
+        span {
+          width: var(--bodyLineHeight);
+          line-height: var(--bodyLineHeight);
+          display: block;
+          text-align: center;
+        }
+      }
       &:last-child {
         border: none;
-      }
-    }
-    .btn {
-      background: none;
-      color: var(--color-neutralContentStrong);
-      padding: var(--space-sm);
-      span {
-        width: var(--bodyLineHeight);
-        line-height: var(--bodyLineHeight);
-        display: block;
-        text-align: center;
       }
     }
   }
