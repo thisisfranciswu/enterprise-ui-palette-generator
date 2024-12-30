@@ -90,6 +90,7 @@ input[type=password] {
   box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSubdued);
   padding: var(--space-sm) calc(var(--space-md) * 0.75);
   color: var(--color-neutralContentStrong);
+  line-height: var(--bodyLineHeight);
   border: none;
   flex-grow: 1;
   width: 100%;
