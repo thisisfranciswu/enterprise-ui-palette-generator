@@ -1,0 +1,19 @@
+@mixin border-radius($size) {
+	border-radius: var(--borderRadius-#{$size});
+}
+
+@mixin font-size($size) {
+	font-size: var(--fontSize-#{$size});
+}
+
+@mixin flex-col($gap) {
+	display: flex;
+	flex-direction: column;
+	gap: $gap;
+}
+
+@mixin flex-row($gap) {
+	display: flex;
+	flex-direction: row;
+	gap: $gap;
+}

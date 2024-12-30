@@ -1,60 +1,45 @@
 body {
+  line-height: var(--bodyLineHeight);
+  padding: var(--space-lg);
   font-family: sans-serif;
-  line-height: 1.6;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  * {
+    font-size: var(--fontSize-md);
+    box-sizing: border-box;
+  }
+}
+
+.container {
+  max-width: 1136px;
+  margin: 0 auto;
 }
 
 h1 {
-  margin: 0;
+  line-height: var(--headingLineHeight);
+  font-size: var(--fontSize-h1);
+  letter-spacing: -0.022em;
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  @include flex-col(var(--space-lg));
 }
 
 #palette {
 
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  @include flex-col(var(--space-md));
 
   .color-swatch {
     margin: 0;
     figcaption {
-      font-size: 0.75rem;
+      @include font-size("sm");
+      margin-bottom: var(--space-sm);
+      color: var(--color-neutralContentSubdued);
       line-height: 1;
       text-align: center;
-      padding-bottom: 0.75rem;
-      margin-bottom: 0.75rem;
-      color: rgba(81, 81, 81, 0.79);
-      position: relative;
-      &:after {
-        display: block;
-        content: "";
-        height: 1px;
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        background-image: linear-gradient(
-          to right,
-          transparent,
-          rgba(107, 107, 107, 0.73),
-          transparent
-        );
-      }
     }
   }
 
   .row {
-    display: flex;
-    flex-direction: row;
-    gap: 0.125rem;
+    @include flex-row(var(--space-xs));
     > * {
       flex-grow: 1;
       width: 100%;
@@ -62,18 +47,16 @@ main {
   }
 
   .col {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    @include flex-col(var(--space-md));
   }
 
   .swatch {
+    @include border-radius("md");
+    height: var(--space-md);
     width: 100%;
-    height: 1rem;
     border: none;
     padding: 0;
     overflow: hidden;
-    border-radius: 4px;
     position: relative;
     span {
       display: block;
@@ -98,13 +81,13 @@ main {
         rgba(107, 107, 107, 0.075) 270deg
       );
       background-repeat: repeat;
-      background-size: 1rem 1rem;
+      background-size: var(--space-md) var(--space-md);
       background-position: top left;
     }
   }
   .ui-swatches {
     .swatch {
-      height: 4rem;
+      height: var(--space-xl);
     }
   }
 
@@ -115,97 +98,93 @@ main {
     flex-grow: 2;
   }
 
-  #seed > span { background-color: var(--seed-color); }
-  #canvas > span { background-color: var(--canvas-color); }
-  #card > span { background-color: var(--card-color); }
-  #accentNonContentBaseline > span { background-color: var(--accentNonContentBaseline-color); }
-  #accentContentBaseline > span { background-color: var(--accentContentBaseline-color); }
-  #accentNonContentFaint > span { background-color: var(--accentNonContentFaint-color); }
-  #accentNonContentSubdued > span { background-color: var(--accentNonContentSubdued-color); }
-  #accentNonContentStrong > span { background-color: var(--accentNonContentStrong-color); }
-  #accentContentSubdued > span { background-color: var(--accentContentSubdued-color); }
-  #accentContentStrong > span { background-color: var(--accentContentStrong-color); }
-  #neutralNonContentFaint > span { background-color: var(--neutralNonContentFaint-color); }
-  #neutralNonContentSubdued > span { background-color: var(--neutralNonContentSubdued-color); }
-  #neutralNonContentStrong > span { background-color: var(--neutralNonContentStrong-color); }
-  #neutralContentSubdued > span { background-color: var(--neutralContentSubdued-color); }
-  #neutralContentStrong > span { background-color: var(--neutralContentStrong-color); }
+  #seed > span { background-color: var(--color-seed); }
+  #canvas > span { background-color: var(--color-canvas); }
+  #card > span { background-color: var(--color-card); }
+  #accentNonContentBaseline > span { background-color: var(--color-accentNonContentBaseline); }
+  #accentContentBaseline > span { background-color: var(--color-accentContentBaseline); }
+  #accentNonContentFaint > span { background-color: var(--color-accentNonContentFaint); }
+  #accentNonContentSubdued > span { background-color: var(--color-accentNonContentSubdued); }
+  #accentNonContentStrong > span { background-color: var(--color-accentNonContentStrong); }
+  #accentContentSubdued > span { background-color: var(--color-accentContentSubdued); }
+  #accentContentStrong > span { background-color: var(--color-accentContentStrong); }
+  #neutralNonContentFaint > span { background-color: var(--color-neutralNonContentFaint); }
+  #neutralNonContentSubdued > span { background-color: var(--color-neutralNonContentSubdued); }
+  #neutralNonContentStrong > span { background-color: var(--color-neutralNonContentStrong); }
+  #neutralContentSubdued > span { background-color: var(--color-neutralContentSubdued); }
+  #neutralContentStrong > span { background-color: var(--color-neutralContentStrong); }
 
 }
 
 #canvas {
 
-  background-color: var(--canvas-color);
-  border-radius: 4px;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: row;
-  gap: 1.5rem;
+  @include flex-row(var(--space-lg));
+  @include border-radius("md");
+  background-color: var(--color-canvas);
+  padding: var(--space-lg);
 
   .material-symbols-rounded {
+    font-size: var(--fontSize-lg);
     font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-    font-size: 1rem;
   }
 
   > .col {
+    @include flex-col(var(--space-lg));
     flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
     width: 100%;
   }
 
   .card {
-    background-color: var(--card-color);
-    border-radius: 4px;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    box-shadow: 0 0 0 1px var(--neutralNonContentFaint-color);
+    @include flex-col(var(--space-md));
+    @include border-radius("md");
+    background-color: var(--color-card);
+    padding: var(--space-md);
+    box-shadow: 0 0 0 1px var(--color-neutralNonContentFaint);
     &.row {
       flex-direction: row;
     }
   }
 
   * {
-    color: var(--neutralContentStrong-color);
+    color: var(--color-neutralContentStrong);
   }
 
   a {
-    color: var(--accentContentStrong-color);
+    color: var(--color-accentContentStrong);
   }
 
-  input[type=text] {
-    box-shadow: inset 0 0 0 1px var(--neutralNonContentSubdued-color);
+  input[type=text],
+  input[type=email],
+  input[type=password] {
+    @include border-radius("md");
+    background: var(--color-card);
+    box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSubdued);
+    padding: var(--space-sm) calc(var(--space-md) / 2);
     border: none;
-    border-radius: 4px;
-    padding: 8px 10px;
     flex-grow: 1;
-    background: var(--card-color);
-    line-height: 1.6;
+    width: 100%;
   }
 
   .btn {
-    padding: 8px 16px;
-    background-color: var(--accentNonContentStrong-color);
-    border: 1px ;
-    border-radius: 4px;
-    color: var(--card-color);
+    @include border-radius("md");
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--color-accentNonContentStrong);
+    color: var(--color-card);
+    border: none;
     line-height: 1.6;
     &.btn-outlined {
       background: none;
-      box-shadow: inset 0 0 0 1px var(--accentNonContentSubdued-color);
-      color: var(--accentContentStrong-color);
+      box-shadow: inset 0 0 0 1px var(--color-accentNonContentSubdued);
+      color: var(--color-accentContentStrong);
     }
     &.btn-soft {
-      background: var(--accentNonContentFaint-color);
-      color: var(--accentContentStrong-color);
+      background: var(--color-accentNonContentFaint);
+      color: var(--color-accentContentStrong);
     }
     &.btn-select {
       background: none;
-      box-shadow: inset 0 0 0 1px var(--neutralNonContentSubdued-color);
-      color: var(--neutralContentStrong-color);
+      box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSubdued);
+      color: var(--color-neutralContentStrong);
       text-align: left;
       position: relative;
       &:after {
@@ -221,38 +200,22 @@ main {
 
   form {
     .row {
-      display: flex;
-      flex-direction: row;
-      gap: 0.25rem;
+      @include flex-row(var(--space-xs));
     }
     .form-group {
       label {
         display: block;
-      }
-      input[type=text],
-      input[type=email],
-      input[type=password] {
-        box-shadow: inset 0 0 0 1px var(--neutralNonContentSubdued-color);
-        border: none;
-        border-radius: 4px;
-        padding: 8px 10px;
-        display: block;
-        width: 100%;
-        box-sizing: border-box;
-        background: var(--card-color);
-        line-height: 1.6;
+        margin-bottom: var(--space-xs);
       }
     }
     .or {
-      display: flex;
-      flex-direction: row;
-      gap: 1rem;
+      @include flex-row(var(--space-md));
       margin: 0;
       span {
-        font-size: 0.875rem;
+        font-size: var(--fontSize-sm);
         line-height: 1;
         text-transform: uppercase;
-        color: var(--neutralContentSubdued-color);
+        color: var(--color-neutralContentSubdued);
         flex-grow: 0;
       }
       &:before,
@@ -261,19 +224,20 @@ main {
         content: "";
         flex-grow: 1;
         height: 1px;
-        margin-top: calc(0.875rem * 0.5);
+        position: relative;
+        top: calc(50% - 0.5px);
       }
       &:before {
         background-image: linear-gradient(
           to right,
           transparent,
-          rgba(107, 107, 107, 0.73)
+          var(--color-neutralNonContentSubdued)
         );
       }
       &:after {
         background-image: linear-gradient(
           to right,
-          rgba(107, 107, 107, 0.73),
+          var(--color-neutralNonContentSubdued),
           transparent
         );
       }
@@ -281,8 +245,8 @@ main {
   }
 
   .menu {
-    border: 1px solid var(--neutralNonContentSubdued-color);
-    border-radius: 4px;
+    @include border-radius("md");
+    box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSubdued);
     padding: 0;
     margin: 0;
     li {
@@ -293,56 +257,54 @@ main {
         display: block;
         padding: 8px 10px;
         text-decoration: none;
-        color: var(--neutralContentSubdued-color);
+        color: var(--color-neutralContentSubdued);
       }
       &.selected {
         a {
-          background: var(--accentNonContentFaint-color);
-          color: var(--neutralContentStrong-color);
+          background: var(--color-accentNonContentFaint);
+          color: var(--color-neutralContentStrong);
         }
       }
     }
   }
 
   .alert {
-    color: var(--accentContentStrong-color);
-    background: var(--accentNonContentFaint-color);
-    border-radius: 4px;
-    padding: 0.75rem 1rem;
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
+    @include flex-row(var(--space-md));
+    @include border-radius("md");
+    color: var(--color-accentContentStrong);
+    background: var(--color-accentNonContentFaint);
+    padding: calc(var(--space-md) * 0.75) var(--space-md);
     .material-symbols-rounded {
-      color: var(--accentContentStrong-color);
-      font-size: 1rem;
-      line-height: 1.6;
+      color: var(--color-accentContentStrong);
+      font-size: var(--space-md);
+      line-height: var(--bodyLineHeight);
     }
   }
 
   .tag {
-    border-radius: 100rem;
-    color: var(--accentContentStrong-color);
-    background: var(--accentNonContentFaint-color);
-    padding: 0 8px;
-    font-size: 0.875rem;
-    line-height: 1.8285714286;
+    @include border-radius("mx");
+    color: var(--color-accentContentStrong);
+    background: var(--color-accentNonContentFaint);
+    padding: 0 var(--space-sm);
+    font-size: var(--fontSize-sm);
+    line-height: var(--bodyLineHeight);
     display: inline-block;
     &.tag-outlined {
+      box-shadow: inset 0 0 0 1px var(--color-accentNonContentSubdued);
       background: none;
-      box-shadow: inset 0 0 0 1px var(--accentNonContentSubdued-color);
     }
   }
 
   input[type=checkbox],
   input[type=radio] {
     appearance: none;
-    background: var(--card-color);
-    box-shadow: inset 0 0 0 1px var(--neutralNonContentSubdued-color);
-    height: 1em;
-    width: 1em;
+    background: var(--color-card);
+    box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSubdued);
+    height: var(--space-md);
+    width: var(--space-md);
     vertical-align: text-bottom;
     position: relative;
-    margin: calc(((1rem * 1.6) - 1rem) * 0.5) 0;
+    margin: calc((var(--bodyLineHeight) - var(--space-md)) / 2) 0;
     &:before {
       content: "";
       position: absolute;
@@ -355,45 +317,45 @@ main {
     }
   }
   input[type=checkbox] {
-    border-radius: 2px;
+    @include border-radius("sm");
     &:checked {
-      background: var(--accentNonContentStrong-color);
+      background: var(--color-accentNonContentStrong);
       box-shadow: none;
       &:before {
-        border-right: 2px solid var(--card-color);
-        border-bottom: 2px solid var(--card-color);
+        border-right: 0.125rem solid var(--color-card);
+        border-bottom: 0.125rem solid var(--color-card);
         height: 50%;
         width: 25%;
         transform: rotate(45deg);
-        margin-top: 2px;
+        margin-top: 12.5%;
+        margin-left: 30%;
       }
     }
     &[role="switch"] {
+      @include border-radius("mx");
+      color: var(--color-card);
+      background: var(--color-neutralNonContentSubdued);
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
       position: relative;
       font-size: inherit;
-      width: 1.5rem;
-      border-radius: 100rem;
+      width: var(--space-lg);
       vertical-align: text-bottom;
-      margin: calc(((1rem * 1.6) - 1rem) * 0.5) 0;
-      color: inherit;
-      background: var(--neutralNonContentSubdued-color);
       box-shadow: none;
       &:before {
+        @include border-radius("mx");
+        background: var(--color-card);
         content: "";
         border: none;
         transform: none;
         margin: 1px;
-        width: 0.875rem;
-        height: 0.875rem;
-        background: var(--card-color);
+        width: calc(var(--space-md) - 2px);
+        height: calc(var(--space-md) - 2px);
         position: absolute;
-        border-radius: 100rem;
       }
       &:checked {
-        background: var(--accentNonContentStrong-color);
+        background: var(--color-accentNonContentStrong);
         &:before {
           right: 0;
           left: auto;
@@ -402,83 +364,74 @@ main {
     }
   }
   input[type=radio] {
-    border-radius: 100%;
+    @include border-radius("mx");
     &:checked {
-      box-shadow: inset 0 0 0 1px var(--accentNonContentStrong-color);
+      box-shadow: inset 0 0 0 1px var(--color-accentNonContentStrong);
       &:before {
-        border-radius: 100%;
-        background: var(--accentNonContentStrong-color);
+        @include border-radius("mx");
+        background: var(--color-accentNonContentStrong);
         margin: 4px;
       }
     }
   }
 
   .media {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
+    @include flex-row(var(--space-md));
     img {
+      @include border-radius("md");
       display: block;
-      width: 3.12375rem;
-      height: 3.12375rem;
-      border-radius: 4px;
+      width: 2.8418rem;
+      height: 2.8418rem;
     }
   }
 
   .text-pair {
     &.text-pair-md-sm {
-      padding-bottom: 0.125rem;
+      padding-bottom: 0.2434rem;
     }
     .text-sm {
-      font-size: 0.875rem;
-      color: var(--neutralContentSubdued-color);
+      @include font-size("sm");
+      color: var(--color-neutralContentSubdued);
     }
   }
 
   .btn-toolbar {
-    display: flex;
-    flex-direction: row;
-    gap: 0;
-    box-shadow: inset 0 0 0 1px var(--neutralNonContentSubdued-color);
-    border-radius: 4px;
+    @include flex-row(0);
+    @include border-radius("md");
+    box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSubdued);
     overflow: hidden;
     .btn-group {
-      display: flex;
-      flex-direction: row;
-      flex-grow: 0;
-      gap: 0;
-      border-right: 1px solid var(--neutralNonContentSubdued-color);
+      @include flex-row(0);
+      border-right: 1px solid var(--color-neutralNonContentSubdued);
       &:last-child {
         border: none;
       }
     }
     .btn {
       background: none;
-      color: var(--neutralContentStrong-color);
-      padding: 0.5rem;
+      color: var(--color-neutralContentStrong);
+      padding: var(--space-sm);
       span {
+        width: var(--bodyLineHeight);
+        line-height: var(--bodyLineHeight);
         display: block;
-        width: 1.6rem;
-        line-height: 1.6;
         text-align: center;
       }
     }
   }
 
   .toast {
-    color: var(--card-color);
-    background: var(--neutralContentStrong-color);
-    border-radius: 4px;
-    padding: 0.75rem 1rem;
+    @include border-radius("md");
+    padding: calc(var(--space-md) * 0.75) var(--space-md);
+    color: var(--color-card);
+    background: var(--color-neutralContentStrong);
   }
 
   .nav {
     &.nav-tabs {
-      display: flex;
-      flex-direction: row;
-      gap: 0;
+      @include flex-row(0);
       box-sizing: border-box;
-      border-bottom: 1px solid var(--neutralNonContentSubdued-color);
+      border-bottom: 1px solid var(--color-neutralNonContentSubdued);
       margin: 0;
       padding: 0;
       li {
@@ -491,11 +444,11 @@ main {
           padding: 8px 10px;
           text-decoration: none;
           position: relative;
-          color: var(--neutralContentSubdued-color);
+          color: var(--color-neutralContentSubdued);
         }
         &.selected {
           a {
-            color: var(--neutralContentStrong-color);
+            color: var(--color-neutralContentStrong);
             &::after {
               display: block;
               content: "";
@@ -504,7 +457,7 @@ main {
               bottom: 0;
               left: 0;
               position: absolute;
-              background: var(--accentNonContentStrong-color);
+              background: var(--color-accentNonContentStrong);
             }
           }
         }
@@ -513,17 +466,15 @@ main {
   }
 
   .avatars {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
+    @include flex-row(var(--space-md));
     .avatar {
-      width: 2.5rem;
-      height: 2.5rem;
+      @include border-radius("mx");
+      width: var(--space-xl);
+      height: var(--space-xl);
+      line-height: var(--space-xl);
       display: block;
-      border-radius: 100%;
       overflow: hidden;
       text-align: center;
-      line-height: 2.5rem;
       img {
         display: block;
         height: 100%;
@@ -531,40 +482,40 @@ main {
       }
       &.avatar-solid {
         &.avatar-subdued {
-          background: var(--accentNonContentSubdued-color);
+          background: var(--color-accentNonContentSubdued);
         }
         &.avatar-strong {
-          background: var(--accentNonContentStrong-color);
+          background: var(--color-accentNonContentStrong);
         }
-        color: var(--card-color);
+        color: var(--color-card);
       }
       &.avatar-soft {
         &.avatar-subdued {
-          color: var(--accentContentSubdued-color);
+          color: var(--color-accentContentSubdued);
         }
         &.avatar-strong {
-          color: var(--accentContentStrong-color);
+          color: var(--color-accentContentStrong);
         }
-        background: var(--accentNonContentFaint-color);
+        background: var(--color-accentNonContentFaint);
       }
       &.avatar-icon {
         span {
-          font-size: 1.5rem;
+          font-size: calc(var(--fontSize-md) * 1.5);
           font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-          line-height: 2.5rem;
+          line-height: var(--space-xl);
         }
         &.avatar-solid {
-          span { color: var(--card-color); }
+          span { color: var(--color-card); }
         }
         &.avatar-soft {
           &.avatar-subdued {
             span {
-              color: var(--accentContentSubdued-color);
+              color: var(--color-accentContentSubdued);
             }
           }
           &.avatar-strong {
             span {
-              color: var(--accentContentStrong-color);
+              color: var(--color-accentContentStrong);
             }
           }
         }
@@ -576,29 +527,27 @@ main {
     display: block;
     height: 0;
     width: 100%;
-    border-bottom: 1 solid var(--neutralNonContentSubdued-color);
+    border-bottom: 1 solid var(--color-neutralNonContentSubdued);
   }
 
   blockquote {
     margin: 0;
-    padding: 0 0 0 1rem;
-    border-left: 4px solid var(--neutralNonContentSubdued-color);
+    padding: 0 0 0 var(--space-md);
+    border-left: 4px solid var(--color-neutralNonContentSubdued);
   }
 
   .checkboxes {
-    background: var(--neutralNonContentFaint-color);
-    padding: 1rem;
-    border-radius: 4px;
+    @include border-radius("md");
+    background: var(--color-neutralNonContentFaint);
+    padding: var(--space-md);
     .form-check {
-      display: flex;
-      flex-direction: row;
-      gap: 0.5rem;
+      @include flex-row(var(--space-sm));
       input[type=checkbox] {
         flex: none;
       }
       &.form-check-struckout {
         label {
-          color: var(--neutralContentSubdued-color);
+          color: var(--color-neutralContentSubdued);
           text-decoration: line-through;
         }
       }
