@@ -308,9 +308,9 @@ main {
 
   .card {
     @include border-radius("md");
+    @include elevation("high");
     background-color: var(--color-card);
     padding: var(--space-md);
-    box-shadow: 0 0 0 1px var(--color-neutralNonContentSoft);
     > * {
       margin-bottom: var(--space-md);
       &:last-child {
@@ -504,6 +504,7 @@ main {
 
   .toast {
     @include border-radius("md");
+    @include elevation("high");
     padding: calc(var(--space-md) * 0.75) var(--space-md);
     color: var(--color-card);
     background: var(--color-neutralContentStrong);
