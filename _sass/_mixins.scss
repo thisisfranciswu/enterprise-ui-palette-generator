@@ -10,10 +10,12 @@
 	display: flex;
 	flex-direction: column;
 	gap: $gap;
+	width: 100%;
 }
 
 @mixin flex-row($gap) {
 	display: flex;
 	flex-direction: row;
 	gap: $gap;
+	width: 100%;
 }

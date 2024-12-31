@@ -30,12 +30,12 @@ function setCssColor(cssVariable, color) {
 function generatePalette() {
 
   const accentColor = document.getElementById('accentColor').value.trim();
-  const canvasContrast = 1.1;
-  const cardContrast = 1.033;
-  const faintContrast = 1.1;
-  const strongContrast = 1.7;
-  const neutralSaturation = 0.333;
-  const neutralToAccentContrast = 1.3;
+  const canvasContrast = document.getElementById('canvasContrast').value.trim();
+  const cardContrast = document.getElementById('cardContrast').value.trim();
+  const softContrast = document.getElementById('softContrast').value.trim();
+  const strongContrast = document.getElementById('strongContrast').value.trim();
+  const neutralSaturation = document.getElementById('neutralSaturation').value.trim();
+  const neutralContrast = document.getElementById('neutralContrast').value.trim();
 
   // Display seed color
   setCssColor('--color-seed', accentColor);
@@ -57,8 +57,8 @@ function generatePalette() {
   setCssColor('--color-accentNonContentStrong', accentNonContentStrongColor);
   var accentNonContentSubduedColor = decreaseOpacityToContrast(accentNonContentStrongColor, cardColor, wcagNonContentContrast);
   setCssColor('--color-accentNonContentSubdued', accentNonContentSubduedColor);
-  var accentNonContentFaintColor = decreaseOpacityToContrast(accentNonContentStrongColor, cardColor, faintContrast);
-  setCssColor('--color-accentNonContentFaint', accentNonContentFaintColor);
+  var accentNonContentSoftColor = decreaseOpacityToContrast(accentNonContentStrongColor, cardColor, softContrast);
+  setCssColor('--color-accentNonContentSoft', accentNonContentSoftColor);
 
   // Establish accent content colors
   var accentContentStrongColor = adjustLuminanceToContrast(accentContentBaselineColor, accentContentBaselineColor, strongContrast);
@@ -68,7 +68,7 @@ function generatePalette() {
 
   // Establish neutral content colors
   var desaturatedNeutralContentStrongColor = setSaturation(accentContentStrongColor, neutralSaturation);
-  var neutralContentStrongColor = decreaseLuminanceToContrast(desaturatedNeutralContentStrongColor, blackColor, neutralToAccentContrast);
+  var neutralContentStrongColor = decreaseLuminanceToContrast(desaturatedNeutralContentStrongColor, blackColor, neutralContrast);
   setCssColor('--color-neutralContentStrong', neutralContentStrongColor);
   var neutralContentSubduedColor = decreaseOpacityToContrast(neutralContentStrongColor, cardColor, wcagContentContrast);
   setCssColor('--color-neutralContentSubdued', neutralContentSubduedColor);
@@ -82,7 +82,7 @@ function generatePalette() {
   setCssColor('--color-neutralNonContentStrong', neutralNonContentStrongColor);
   var neutralNonContentSubduedColor = decreaseOpacityToContrast(neutralNonContentStrongColor, cardColor, wcagNonContentContrast);
   setCssColor('--color-neutralNonContentSubdued', neutralNonContentSubduedColor);
-  var neutralNonContentFaintColor = decreaseOpacityToContrast(neutralNonContentStrongColor, cardColor, faintContrast);
-  setCssColor('--color-neutralNonContentFaint', neutralNonContentFaintColor);
+  var neutralNonContentSoftColor = decreaseOpacityToContrast(neutralNonContentStrongColor, cardColor, softContrast);
+  setCssColor('--color-neutralNonContentSoft', neutralNonContentSoftColor);
 
 }
