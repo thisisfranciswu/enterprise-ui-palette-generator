@@ -30,6 +30,19 @@ h2 {
   margin: 0;
 }
 
+#intro {
+  p {
+    margin: 0 0 var(--bodyLineHeight);
+    color: var(--color-neutralContentStrong);
+    a {
+      color: var(--color-accentContentStrong);
+    }
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
 #aside-and-main {
   @include flex-row(var(--space-xl));
   #settings {
