@@ -25,7 +25,7 @@ export function adjustLuminanceToContrast(fgColor, bgColor, targetContrast, prec
           break;
         }
       }
-      return chroma(fgColor).luminance(fgLuminance).hex();
+      return chroma(fgColor).luminance(fgLuminance).hex().toUpperCase();
     }
   }
 
@@ -46,6 +46,6 @@ export function adjustLuminanceToContrast(fgColor, bgColor, targetContrast, prec
   }
 
   // Return the color with the adjusted luminance
-  return chroma(fgColor).luminance(adjustedLuminance).hex();
+  return chroma(fgColor).luminance(adjustedLuminance).hex().toUpperCase();
 
 }

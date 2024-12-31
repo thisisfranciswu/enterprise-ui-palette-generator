@@ -13,7 +13,7 @@ const whiteColor = "#FFF";
 const blackColor = "#000";
 
 // Insert the random color value into the text field
-$('#accentColor').val(chroma.random().hex());
+$('#accentColor').val(chroma.random().hex().toUpperCase());
 
 generatePalette();
 
@@ -39,7 +39,7 @@ function generatePalette() {
   const neutralContrast = document.getElementById('neutralContrast').value.trim();
 
   // Display seed color
-  setCssColor('seed', '--color-seed', accentColor);
+  setCssColor('seed', '--color-seed', accentColor.toUpperCase());
 
   // Establish background colors
   var canvasColor = adjustLuminanceToContrast(accentColor, whiteColor, canvasContrast);
