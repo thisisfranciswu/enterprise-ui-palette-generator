@@ -1,7 +1,7 @@
 body {
   line-height: var(--bodyLineHeight);
   padding: var(--space-xl);
-  font-family: sans-serif;
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   * {
     font-size: var(--fontSize-md);
     box-sizing: border-box;
@@ -205,6 +205,7 @@ main {
       font-size: var(--fontSize-sm);
       padding: 0 var(--space-xs);
       box-shadow: 0 0 0 1px var(--color-neutralNonContentSoft);
+      font-family: monospace, monospace;
       background: #fff;
       white-space: nowrap;
       display: inline-block;

@@ -15,5 +15,5 @@ export function setSaturation(color, saturation) {
   const adjustedSaturation = s * saturation;
 
   // Return the color with the adjusted saturation
-  return chroma.hsl(h, adjustedSaturation, l).hex();
+  return chroma.hsl(h, adjustedSaturation, l).hex().toUpperCase();
 }

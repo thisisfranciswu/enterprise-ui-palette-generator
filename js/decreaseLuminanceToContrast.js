@@ -37,7 +37,7 @@ export function decreaseLuminanceToContrast(fgColor, bgColor, targetContrast, pr
   adjustedLuminance = lowerBound;
 
   // Apply adjusted luminance back to the foreground color
-  const adjustedColor = chroma(fgColor).luminance(adjustedLuminance).hex();
+  const adjustedColor = chroma(fgColor).luminance(adjustedLuminance).hex().toUpperCase();
 
   return adjustedColor;
 }
