@@ -193,13 +193,28 @@ main {
   }
 
   .swatch {
-    height: 1rem;
+    height: 3rem;
     width: 100%;
     border: none;
     padding: 0;
     overflow: hidden;
     position: relative;
-    span {
+    .value {
+      @include border-radius("sm");
+      color: var(--color-neutralContentStrong);
+      font-size: var(--fontSize-sm);
+      padding: 0 var(--space-xs);
+      box-shadow: 0 0 0 1px var(--color-neutralNonContentSoft);
+      background: #fff;
+      white-space: nowrap;
+      display: inline-block;
+      z-index: 3;
+      position: absolute;
+      bottom: 0.125rem;
+      left: 0.125rem;
+      content: "";
+    }
+    .color {
       @include border-radius("md");
       box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSoft);
       display: block;
@@ -230,7 +245,7 @@ main {
   }
   .ui-swatches {
     .swatch {
-      height: 4rem;
+      height: 6rem;
     }
   }
 
@@ -241,21 +256,21 @@ main {
     flex: 2 1 0;
   }
 
-  #seed > span { background-color: var(--color-seed); }
-  #canvas > span { background-color: var(--color-canvas); }
-  #card > span { background-color: var(--color-card); }
-  #accentNonContentBaseline > span { background-color: var(--color-accentNonContentBaseline); }
-  #accentContentBaseline > span { background-color: var(--color-accentContentBaseline); }
-  #accentNonContentSoft > span { background-color: var(--color-accentNonContentSoft); }
-  #accentNonContentSubdued > span { background-color: var(--color-accentNonContentSubdued); }
-  #accentNonContentStrong > span { background-color: var(--color-accentNonContentStrong); }
-  #accentContentSubdued > span { background-color: var(--color-accentContentSubdued); }
-  #accentContentStrong > span { background-color: var(--color-accentContentStrong); }
-  #neutralNonContentSoft > span { background-color: var(--color-neutralNonContentSoft); }
-  #neutralNonContentSubdued > span { background-color: var(--color-neutralNonContentSubdued); }
-  #neutralNonContentStrong > span { background-color: var(--color-neutralNonContentStrong); }
-  #neutralContentSubdued > span { background-color: var(--color-neutralContentSubdued); }
-  #neutralContentStrong > span { background-color: var(--color-neutralContentStrong); }
+  #seed > .color { background-color: var(--color-seed); }
+  #canvas > .color { background-color: var(--color-canvas); }
+  #card > .color { background-color: var(--color-card); }
+  #accentNonContentBaseline > .color { background-color: var(--color-accentNonContentBaseline); }
+  #accentContentBaseline > .color { background-color: var(--color-accentContentBaseline); }
+  #accentNonContentSoft > .color { background-color: var(--color-accentNonContentSoft); }
+  #accentNonContentSubdued > .color { background-color: var(--color-accentNonContentSubdued); }
+  #accentNonContentStrong > .color { background-color: var(--color-accentNonContentStrong); }
+  #accentContentSubdued > .color { background-color: var(--color-accentContentSubdued); }
+  #accentContentStrong > .color { background-color: var(--color-accentContentStrong); }
+  #neutralNonContentSoft > .color { background-color: var(--color-neutralNonContentSoft); }
+  #neutralNonContentSubdued > .color { background-color: var(--color-neutralNonContentSubdued); }
+  #neutralNonContentStrong > .color { background-color: var(--color-neutralNonContentStrong); }
+  #neutralContentSubdued > .color { background-color: var(--color-neutralContentSubdued); }
+  #neutralContentStrong > .color { background-color: var(--color-neutralContentStrong); }
 
 }
 

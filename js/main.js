@@ -22,9 +22,10 @@ $('#generateBtn').on('click', function(e) {
   e.preventDefault();
 });
 
-function setCssColor(cssVariable, color) {
+function setCssColor(swatchId, cssVariable, color) {
   // Sets colors for both a swatch and a CSS variable
   root.style.setProperty(cssVariable, color);
+  $(`#${swatchId} .value`).text(color);
 }
 
 function generatePalette() {
@@ -38,40 +39,40 @@ function generatePalette() {
   const neutralContrast = document.getElementById('neutralContrast').value.trim();
 
   // Display seed color
-  setCssColor('--color-seed', accentColor);
+  setCssColor('seed', '--color-seed', accentColor);
 
   // Establish background colors
   var canvasColor = adjustLuminanceToContrast(accentColor, whiteColor, canvasContrast);
-  setCssColor('--color-canvas', canvasColor);
+  setCssColor('canvas', '--color-canvas', canvasColor);
   var cardColor = adjustLuminanceToContrast(accentColor, whiteColor, cardContrast);
-  setCssColor('--color-card', cardColor);
+  setCssColor('card', '--color-card', cardColor);
 
   // Establish accent baseline colors
   var accentNonContentBaselineColor = adjustLuminanceToContrast(accentColor, cardColor, wcagNonContentContrast);
-  setCssColor('--color-accentNonContentBaseline', accentNonContentBaselineColor);
+  setCssColor('accentNonContentBaseline', '--color-accentNonContentBaseline', accentNonContentBaselineColor);
   var accentContentBaselineColor = adjustLuminanceToContrast(accentColor, cardColor, wcagContentContrast);
-  setCssColor('--color-accentContentBaseline', accentContentBaselineColor);
+  setCssColor('accentContentBaseline', '--color-accentContentBaseline', accentContentBaselineColor);
 
   // Establish accent non-content colors
   var accentNonContentStrongColor = adjustLuminanceToContrast(accentNonContentBaselineColor, accentNonContentBaselineColor, strongContrast);
-  setCssColor('--color-accentNonContentStrong', accentNonContentStrongColor);
+  setCssColor('accentNonContentStrong', '--color-accentNonContentStrong', accentNonContentStrongColor);
   var accentNonContentSubduedColor = decreaseOpacityToContrast(accentNonContentStrongColor, cardColor, wcagNonContentContrast);
-  setCssColor('--color-accentNonContentSubdued', accentNonContentSubduedColor);
+  setCssColor('accentNonContentSubdued', '--color-accentNonContentSubdued', accentNonContentSubduedColor);
   var accentNonContentSoftColor = decreaseOpacityToContrast(accentNonContentStrongColor, cardColor, softContrast);
-  setCssColor('--color-accentNonContentSoft', accentNonContentSoftColor);
+  setCssColor('accentNonContentSoft', '--color-accentNonContentSoft', accentNonContentSoftColor);
 
   // Establish accent content colors
   var accentContentStrongColor = adjustLuminanceToContrast(accentContentBaselineColor, accentContentBaselineColor, strongContrast);
-  setCssColor('--color-accentContentStrong', accentContentStrongColor);
+  setCssColor('accentContentStrong', '--color-accentContentStrong', accentContentStrongColor);
   var accentContentSubduedColor = decreaseOpacityToContrast(accentContentStrongColor, cardColor, wcagContentContrast);
-  setCssColor('--color-accentContentSubdued', accentContentSubduedColor);
+  setCssColor('accentContentSubdued', '--color-accentContentSubdued', accentContentSubduedColor);
 
   // Establish neutral content colors
   var desaturatedNeutralContentStrongColor = setSaturation(accentContentStrongColor, neutralSaturation);
   var neutralContentStrongColor = decreaseLuminanceToContrast(desaturatedNeutralContentStrongColor, blackColor, neutralContrast);
-  setCssColor('--color-neutralContentStrong', neutralContentStrongColor);
+  setCssColor('neutralContentStrong', '--color-neutralContentStrong', neutralContentStrongColor);
   var neutralContentSubduedColor = decreaseOpacityToContrast(neutralContentStrongColor, cardColor, wcagContentContrast);
-  setCssColor('--color-neutralContentSubdued', neutralContentSubduedColor);
+  setCssColor('neutralContentSubdued', '--color-neutralContentSubdued', neutralContentSubduedColor);
 
   // Establish neutral non-content colors
   var accentContentStrongColorLuminance = chroma(accentContentStrongColor).luminance();
@@ -79,10 +80,10 @@ function generatePalette() {
   var neutralContentStrongColorLuminance = chroma(neutralContentStrongColor).luminance();
   var neutralStrongAccentLuminance = accentNonContentStrongColorLuminance / accentContentStrongColorLuminance * chroma(neutralContentStrongColor).luminance();
   var neutralNonContentStrongColor = chroma(neutralContentStrongColor).luminance(neutralStrongAccentLuminance).hex();
-  setCssColor('--color-neutralNonContentStrong', neutralNonContentStrongColor);
+  setCssColor('neutralNonContentStrong', '--color-neutralNonContentStrong', neutralNonContentStrongColor);
   var neutralNonContentSubduedColor = decreaseOpacityToContrast(neutralNonContentStrongColor, cardColor, wcagNonContentContrast);
-  setCssColor('--color-neutralNonContentSubdued', neutralNonContentSubduedColor);
+  setCssColor('neutralNonContentSubdued', '--color-neutralNonContentSubdued', neutralNonContentSubduedColor);
   var neutralNonContentSoftColor = decreaseOpacityToContrast(neutralNonContentStrongColor, cardColor, softContrast);
-  setCssColor('--color-neutralNonContentSoft', neutralNonContentSoftColor);
+  setCssColor('neutralNonContentSoft', '--color-neutralNonContentSoft', neutralNonContentSoftColor);
 
 }
