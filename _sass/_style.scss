@@ -30,7 +30,18 @@ h2 {
   margin: 0;
 }
 
-#generate,
+#aside-and-main {
+  @include flex-row(var(--space-xl));
+  #settings {
+    flex: 1 1 0;
+  }
+  main {
+    flex: 5 1 0;
+  }
+}
+
+#settings form,
+#palette,
 #demo {
   @include flex-col(var(--space-md));
 }
@@ -63,7 +74,7 @@ form {
       flex-grow: 1;
       height: 1px;
       position: relative;
-      top: calc(50% - 0.5px);
+      top: calc(var(--fontSize-sm) / 2);
     }
     &:before {
       background-image: linear-gradient(
@@ -109,7 +120,7 @@ input[type=password] {
     color: var(--color-accentContentStrong);
   }
   &.btn-soft {
-    background: var(--color-accentNonContentFaint);
+    background: var(--color-accentNonContentSoft);
     color: var(--color-accentContentStrong);
   }
   &.btn-select {
@@ -118,6 +129,7 @@ input[type=password] {
     color: var(--color-neutralContentStrong);
     text-align: left;
     position: relative;
+    width: 100%;
     &:after {
       display: block;
       font-family: "Material Symbols Rounded";
@@ -126,6 +138,9 @@ input[type=password] {
       top: 8px;
       right: 10px;
     }
+  }
+  &.btn-block {
+    width: 100%;
   }
 }
 
@@ -137,6 +152,22 @@ main {
 
   @include flex-col(var(--space-md));
   @include border-radius("md");
+
+  .palette-group {
+    @include flex-col(var(--space-sm));
+    @include border-radius("md");
+    box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSubdued);
+    padding: var(--space-md);
+  }
+
+  .palette-heading {
+    @include font-size("md");
+    color: var(--color-neutralContentSubdued);
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    display: block;
+  }
 
   .color-swatch {
     margin: 0;
@@ -162,14 +193,15 @@ main {
   }
 
   .swatch {
-    @include border-radius("md");
-    height: var(--space-md);
+    height: 1rem;
     width: 100%;
     border: none;
     padding: 0;
     overflow: hidden;
     position: relative;
     span {
+      @include border-radius("md");
+      box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSoft);
       display: block;
       height: 100%;
       width: 100%;
@@ -198,15 +230,15 @@ main {
   }
   .ui-swatches {
     .swatch {
-      height: var(--space-xl);
+      height: 4rem;
     }
   }
 
   #nonContentGroup {
-    flex-grow: 3;
+    flex: 3 1 0;
   }
   #contentGroup {
-    flex-grow: 2;
+    flex: 2 1 0;
   }
 
   #seed > span { background-color: var(--color-seed); }
@@ -214,12 +246,12 @@ main {
   #card > span { background-color: var(--color-card); }
   #accentNonContentBaseline > span { background-color: var(--color-accentNonContentBaseline); }
   #accentContentBaseline > span { background-color: var(--color-accentContentBaseline); }
-  #accentNonContentFaint > span { background-color: var(--color-accentNonContentFaint); }
+  #accentNonContentSoft > span { background-color: var(--color-accentNonContentSoft); }
   #accentNonContentSubdued > span { background-color: var(--color-accentNonContentSubdued); }
   #accentNonContentStrong > span { background-color: var(--color-accentNonContentStrong); }
   #accentContentSubdued > span { background-color: var(--color-accentContentSubdued); }
   #accentContentStrong > span { background-color: var(--color-accentContentStrong); }
-  #neutralNonContentFaint > span { background-color: var(--color-neutralNonContentFaint); }
+  #neutralNonContentSoft > span { background-color: var(--color-neutralNonContentSoft); }
   #neutralNonContentSubdued > span { background-color: var(--color-neutralNonContentSubdued); }
   #neutralNonContentStrong > span { background-color: var(--color-neutralNonContentStrong); }
   #neutralContentSubdued > span { background-color: var(--color-neutralContentSubdued); }
@@ -229,30 +261,31 @@ main {
 
 #canvas {
 
-  @include flex-row(var(--space-lg));
   @include border-radius("md");
-  background-color: var(--color-canvas);
+  @include flex-row(var(--space-lg));
   padding: var(--space-lg);
-
-  .material-symbols-rounded {
-    font-size: var(--fontSize-lg);
-    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-  }
-
+  background-color: var(--color-canvas);
   > .col {
     @include flex-col(var(--space-lg));
     flex: 1 1 0;
     min-width: 0;
   }
+  
+  .material-symbols-rounded {
+    font-size: var(--fontSize-lg);
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  }
 
   .card {
-    @include flex-col(var(--space-md));
     @include border-radius("md");
     background-color: var(--color-card);
     padding: var(--space-md);
-    box-shadow: 0 0 0 1px var(--color-neutralNonContentFaint);
-    &.row {
-      flex-direction: row;
+    box-shadow: 0 0 0 1px var(--color-neutralNonContentSoft);
+    > * {
+      margin-bottom: var(--space-md);
+      &:last-child {
+        margin: 0;
+      }
     }
   }
 
@@ -264,7 +297,7 @@ main {
     @include border-radius("md");
     box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSubdued);
     padding: 0;
-    margin: 0;
+    margin: 0 0 inherit;
     li {
       list-style: none;
       margin: 0;
@@ -277,7 +310,7 @@ main {
       }
       &.selected {
         a {
-          background: var(--color-accentNonContentFaint);
+          background: var(--color-accentNonContentSoft);
           color: var(--color-neutralContentStrong);
         }
       }
@@ -288,7 +321,7 @@ main {
     @include flex-row(var(--space-md));
     @include border-radius("md");
     color: var(--color-accentContentStrong);
-    background: var(--color-accentNonContentFaint);
+    background: var(--color-accentNonContentSoft);
     padding: calc(var(--space-md) * 0.75) var(--space-md);
     .material-symbols-rounded {
       color: var(--color-accentContentStrong);
@@ -300,7 +333,7 @@ main {
   .tag {
     @include border-radius("mx");
     color: var(--color-accentContentStrong);
-    background: var(--color-accentNonContentFaint);
+    background: var(--color-accentNonContentSoft);
     padding: 0 var(--space-sm);
     font-size: var(--fontSize-sm);
     line-height: var(--bodyLineHeight);
@@ -485,13 +518,15 @@ main {
   }
 
   .avatars {
-    @include flex-row(var(--space-md));
+    overflow: hidden;   
     .avatar {
       @include border-radius("mx");
       width: var(--space-xl);
       height: var(--space-xl);
       line-height: var(--space-xl);
+      margin-right: var(--space-sm);
       display: block;
+      float: left;
       overflow: hidden;
       text-align: center;
       img {
@@ -515,7 +550,7 @@ main {
         &.avatar-strong {
           color: var(--color-accentContentStrong);
         }
-        background: var(--color-accentNonContentFaint);
+        background: var(--color-accentNonContentSoft);
       }
       &.avatar-icon {
         span {
@@ -558,7 +593,7 @@ main {
 
   .checkboxes {
     @include border-radius("md");
-    background: var(--color-neutralNonContentFaint);
+    background: var(--color-neutralNonContentSoft);
     padding: var(--space-md);
     .form-check {
       @include flex-row(var(--space-sm));
