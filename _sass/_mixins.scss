@@ -19,3 +19,7 @@
 	gap: $gap;
 	width: 100%;
 }
+
+@mixin elevation($elevation) {
+	box-shadow: var(--elevation-#{$elevation});
+}
