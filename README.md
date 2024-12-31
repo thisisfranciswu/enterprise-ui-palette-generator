@@ -12,11 +12,11 @@ In no particular order, allow user to:
 
 - [x] Enjoy refactored CSS
 - [x] Enjoy refined UI
+- [x] See color values
+- [x] Override default settings
 - [ ] Enjoy responsive layout
-- [ ] See color values
 - [ ] See favicon
 - [ ] Generate dark mode colors
 - [ ] Select seed color via color picker
 - [ ] Select from preset seed colors
 - [ ] Export colors
-- [ ] Override default settings
