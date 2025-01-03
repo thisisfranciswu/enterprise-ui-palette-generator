@@ -206,6 +206,7 @@ main {
   }
 
   .swatch {
+    @include border-radius("sm");
     height: 3rem;
     width: 100%;
     border: none;
@@ -241,17 +242,17 @@ main {
     &:after {
       z-index: 1;
       display: block;
-      width: 100%;
+      width: 50%;
       height: 100%;
       content: "";
       position: absolute;
       top: 0;
       left: 50%;
       background: conic-gradient(
-        #fff 90deg,
-        rgba(107, 107, 107, 0.075) 90deg 180deg,
-        #fff 180deg 270deg,
-        rgba(107, 107, 107, 0.075) 270deg
+        var(--color-card) 90deg,
+        var(--color-neutralNonContentSoft) 90deg 180deg,
+        var(--color-card) 180deg 270deg,
+        var(--color-neutralNonContentSoft) 270deg
       );
       background-repeat: repeat;
       background-size: var(--space-md) var(--space-md);
