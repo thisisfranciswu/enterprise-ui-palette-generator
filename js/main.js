@@ -21,13 +21,26 @@ $('#generateBtn').on('click', function(e) {
   e.preventDefault();
 });
 
-$('#toggleMode').on('click', function(e) {
-  const currentTheme = $("html").attr("data-theme");
-  const newTheme = currentTheme === "light" ? "dark" : "light";
-  $("html").attr("data-theme", newTheme);
-  setSwatchValues(newTheme);
+$('#lightModeBtn').on('click', function(e) {
+  $('html').attr('data-theme', 'light');
+  $(this).attr('data-state', 'on');
+  $('#darkModeBtn').attr('data-state', 'off');
   e.preventDefault();
 });
+$('#darkModeBtn').on('click', function(e) {
+  $('html').attr('data-theme', 'dark');
+  $(this).attr('data-state', 'on');
+  $('#lightModeBtn').attr('data-state', 'off');
+  e.preventDefault();
+});
+
+// $('#toggleMode').on('click', function(e) {
+//   const currentTheme = $("html").attr("data-theme");
+//   const newTheme = currentTheme === "light" ? "dark" : "light";
+//   $("html").attr("data-theme", newTheme);
+//   setSwatchValues(newTheme);
+//   e.preventDefault();
+// });
 
 // Re-displ
 function setSwatchValues(theme) {
