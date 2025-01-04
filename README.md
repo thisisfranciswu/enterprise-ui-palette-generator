@@ -17,8 +17,8 @@ In no particular order, allow user to:
 - [x] Generate dark mode colors
 - [x] See favicon
 - [x] Light/dark mode switch
-- [ ] But why doesn't it work for #F24BEC?
-- [ ] Generate random accent
+- [x] Generate random accent
 - [ ] Select from preset seed colors
+- [ ] But why doesn't it work for #F24BEC?
 - [ ] Enjoy responsive layout
 - [ ] Export colors
