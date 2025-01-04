@@ -14,9 +14,10 @@ In no particular order, allow user to:
 - [x] Enjoy refined UI
 - [x] See color values
 - [x] Override default settings
+- [x] Generate dark mode colors
+- [ ] But why doesn't it work for #F24BEC?
+- [ ] Generate random accent
+- [ ] Select from preset seed colors
 - [ ] Enjoy responsive layout
 - [ ] See favicon
-- [ ] Generate dark mode colors
-- [ ] Select seed color via color picker
-- [ ] Select from preset seed colors
 - [ ] Export colors
