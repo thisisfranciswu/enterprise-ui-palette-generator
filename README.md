@@ -20,6 +20,6 @@ In no particular order, allow user to:
 - [x] Generate random accent
 - [x] See accent color in input field
 - [x] Select from preset seed colors
-- [ ] But why doesn't it work for #F24BEC?
+- [x] But why doesn't it work for #F24BEC?
 - [ ] Enjoy responsive layout
 - [ ] Export colors
