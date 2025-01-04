@@ -53,6 +53,11 @@ $('#tryBrandColor a').on('click', function(e) {
   e.preventDefault();
 });
 
+$('#accentColor').on('change', function(e) {
+  var color = $(this).val();
+  $('#accentColor').parent().find('.mini-swatch').css('background-color', color);
+})
+
 // Re-displ
 function setSwatchValues(theme) {
   $('.swatch').each(function() {

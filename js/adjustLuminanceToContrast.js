@@ -5,7 +5,7 @@ export function adjustLuminanceToContrast(fgColor, bgColor, targetContrast, fgLu
   const bgLuminance = chroma(bgColor).luminance(); // Get background luminance
   let fgLuminance = chroma(fgColor).luminance(); // Get foreground luminance
   let stepSize = 0.0001; // Size and direction of luminance adjustment
-  let precision = stepSize * 100; // targetContrast precision
+  let precision = stepSize * 500; // targetContrast precision
 
   // console.log(fgColor, bgColor, targetContrast);
 
