@@ -33,7 +33,6 @@ $('#toggleMode').on('click', function(e) {
 function setSwatchValues(theme) {
   $('.swatch').each(function() {
     var $value = $(this).find('.value');
-    console.log(`data-${theme}`);
     $value.text($(this).attr(`data-${theme}-color`));
   });
 }
