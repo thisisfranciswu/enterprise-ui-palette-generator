@@ -15,6 +15,7 @@ In no particular order, allow user to:
 - [x] See color values
 - [x] Override default settings
 - [x] Generate dark mode colors
+- [ ] Light/dark mode switch
 - [ ] But why doesn't it work for #F24BEC?
 - [ ] Generate random accent
 - [ ] Select from preset seed colors
