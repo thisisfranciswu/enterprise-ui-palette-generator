@@ -18,6 +18,7 @@ In no particular order, allow user to:
 - [x] See favicon
 - [x] Light/dark mode switch
 - [x] Generate random accent
+- [ ] See accent color in input field
 - [ ] Select from preset seed colors
 - [ ] But why doesn't it work for #F24BEC?
 - [ ] Enjoy responsive layout
