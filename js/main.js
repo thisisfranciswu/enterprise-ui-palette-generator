@@ -12,8 +12,13 @@ const whiteColor = "#FFF";
 const blackColor = "#000";
 
 // Insert the random color value into the text field
-$('#accentColor').val(chroma.random().hex().toUpperCase());
+function generateRandomColor() {
+  var randomColor = chroma.random().hex().toUpperCase();
+  $('#accentColor').val(randomColor);
+  $('#accentColor').parent().find('.mini-swatch').css('background-color', randomColor);
+}
 
+generateRandomColor();
 generatePalette();
 
 $('#generateBtn').on('click', function(e) {
@@ -25,17 +30,19 @@ $('#lightModeBtn').on('click', function(e) {
   $('html').attr('data-theme', 'light');
   $(this).attr('data-state', 'on');
   $('#darkModeBtn').attr('data-state', 'off');
+  setSwatchValues('light');
   e.preventDefault();
 });
 $('#darkModeBtn').on('click', function(e) {
   $('html').attr('data-theme', 'dark');
   $(this).attr('data-state', 'on');
   $('#lightModeBtn').attr('data-state', 'off');
+  setSwatchValues('dark');
   e.preventDefault();
 });
 
 $('#randomColorBtn').on('click', function(e) {
-  $('#accentColor').val(chroma.random().hex().toUpperCase());
+  generateRandomColor();
   e.preventDefault();
 });
 
