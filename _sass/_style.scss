@@ -14,12 +14,15 @@ body {
   margin: 0 auto;
 }
 
+#toggleMode { float: right; }
+
 h1 {
   line-height: var(--headingLineHeight);
   font-size: var(--fontSize-h1);
   color: var(--color-neutralContentStrong);
   letter-spacing: -0.022em;
   margin: 0;
+  margin-right: var(--space-xl);
 }
 
 h2 {
@@ -127,6 +130,7 @@ input[type=password] {
   color: var(--color-card);
   border: none;
   line-height: 1.6;
+  text-decoration: none;
   &.btn-outlined {
     background: none;
     box-shadow: inset 0 0 0 1px var(--color-accentNonContentSubdued);
@@ -272,23 +276,23 @@ main {
     flex: 2 1 0;
   }
 
-  #seed > .color { background-color: var(--color-seed); }
-  #canvas > .color { background-color: var(--color-canvas); }
-  #card > .color { background-color: var(--color-card); }
-  #accentNonContentBaseline > .color { background-color: var(--color-accentNonContentBaseline); }
-  #accentContentBaseline > .color { background-color: var(--color-accentContentBaseline); }
-  #accentNonContentSoft > .color { background-color: var(--color-accentNonContentSoft); }
-  #accentNonContentSubdued > .color { background-color: var(--color-accentNonContentSubdued); }
-  #accentNonContentStrong > .color { background-color: var(--color-accentNonContentStrong); }
-  #accentContentSubdued > .color { background-color: var(--color-accentContentSubdued); }
-  #accentContentStrong > .color { background-color: var(--color-accentContentStrong); }
-  #neutralNonContentSoft > .color { background-color: var(--color-neutralNonContentSoft); }
-  #neutralNonContentSubdued > .color { background-color: var(--color-neutralNonContentSubdued); }
-  #neutralNonContentStrong > .color { background-color: var(--color-neutralNonContentStrong); }
-  #neutralContentSubdued > .color { background-color: var(--color-neutralContentSubdued); }
-  #neutralContentStrong > .color { background-color: var(--color-neutralContentStrong); }
-
 }
+
+#seed > .color { background-color: var(--color-seed); }
+#canvas > .color { background-color: var(--color-canvas); }
+#card > .color { background-color: var(--color-card); }
+#accentNonContentBaseline > .color { background-color: var(--color-accentNonContentBaseline); }
+#accentContentBaseline > .color { background-color: var(--color-accentContentBaseline); }
+#accentNonContentSoft > .color { background-color: var(--color-accentNonContentSoft); }
+#accentNonContentSubdued > .color { background-color: var(--color-accentNonContentSubdued); }
+#accentNonContentStrong > .color { background-color: var(--color-accentNonContentStrong); }
+#accentContentSubdued > .color { background-color: var(--color-accentContentSubdued); }
+#accentContentStrong > .color { background-color: var(--color-accentContentStrong); }
+#neutralNonContentSoft > .color { background-color: var(--color-neutralNonContentSoft); }
+#neutralNonContentSubdued > .color { background-color: var(--color-neutralNonContentSubdued); }
+#neutralNonContentStrong > .color { background-color: var(--color-neutralNonContentStrong); }
+#neutralContentSubdued > .color { background-color: var(--color-neutralContentSubdued); }
+#neutralContentStrong > .color { background-color: var(--color-neutralContentStrong); }
 
 #canvas {
 
@@ -644,4 +648,16 @@ main {
     }
   }
 
+}
+
+[data-theme='light'] {
+  body { background-color: #fff; }
+  #palette .swatch .value { background: #fff; }
+}
+[data-theme='dark'] {
+  body { background-color: #000; }
+  #palette .swatch .value { background: #000; }
+  #canvas .card {
+    box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSoft);
+  }
 }
