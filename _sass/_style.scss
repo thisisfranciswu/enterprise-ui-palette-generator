@@ -67,6 +67,18 @@ form {
       margin-bottom: var(--space-xs);
       color: var(--color-neutralContentStrong);
     }
+    .input-hint {
+      font-size: var(--fontSize-sm);
+      color: var(--color-neutralContentSubdued);
+      margin-top: var(--space-xs);
+      line-height: 1.6;
+      display: block;
+      a {
+        font-size: var(--fontSize-sm);
+        color: var(--color-accentContentSubdued);
+        line-height: 1.6;
+      }
+    }
   }
   .form-row {
     @include flex-row(var(--space-xs));

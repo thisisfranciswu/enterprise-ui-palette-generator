@@ -46,6 +46,13 @@ $('#randomColorBtn').on('click', function(e) {
   e.preventDefault();
 });
 
+$('#tryBrandColor a').on('click', function(e) {
+  var brandColor = $(this).attr('data-color-value');
+  $('#accentColor').val(brandColor);
+  $('#accentColor').parent().find('.mini-swatch').css('background-color', brandColor);
+  e.preventDefault();
+});
+
 // Re-displ
 function setSwatchValues(theme) {
   $('.swatch').each(function() {
