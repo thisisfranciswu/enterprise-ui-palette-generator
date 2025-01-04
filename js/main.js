@@ -34,13 +34,10 @@ $('#darkModeBtn').on('click', function(e) {
   e.preventDefault();
 });
 
-// $('#toggleMode').on('click', function(e) {
-//   const currentTheme = $("html").attr("data-theme");
-//   const newTheme = currentTheme === "light" ? "dark" : "light";
-//   $("html").attr("data-theme", newTheme);
-//   setSwatchValues(newTheme);
-//   e.preventDefault();
-// });
+$('#randomColorBtn').on('click', function(e) {
+  $('#accentColor').val(chroma.random().hex().toUpperCase());
+  e.preventDefault();
+});
 
 // Re-displ
 function setSwatchValues(theme) {
