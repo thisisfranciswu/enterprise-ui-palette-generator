@@ -23,6 +23,7 @@ In no particular order, allow user to:
 - [x] But why doesn't it work for #F24BEC?
 - [x] See impact of interactive effects
 - [x] See usage instructions
+- [x] See social media thumbnail when shared
 - [ ] Learn how this works
 - [ ] Enjoy responsive layout
 - [ ] Export colors
