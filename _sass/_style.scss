@@ -37,6 +37,9 @@ h2 {
     color: var(--color-neutralContentStrong);
     a {
       color: var(--color-accentContentStrong);
+      &:hover {
+        text-decoration: none;
+      }
     }
     &:last-child {
       margin: 0;
@@ -51,6 +54,11 @@ h2 {
   }
   main {
     flex: 5 1 0;
+  }
+  a {
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 
@@ -166,6 +174,9 @@ input[type=password] {
   border: none;
   flex-grow: 1;
   width: 100%;
+  &:focus {
+    outline: 2px solid var(--color-accentNonContentSubdued);
+  }
 }
 
 .btn {
@@ -180,10 +191,16 @@ input[type=password] {
     background: none;
     box-shadow: inset 0 0 0 1px var(--color-accentNonContentSubdued);
     color: var(--color-accentContentStrong);
+    &:hover {
+      background: color-mix(in oklab, var(--color-card), white 60%);
+    }
   }
   &.btn-soft {
     background: var(--color-accentNonContentSoft);
     color: var(--color-accentContentStrong);
+    &:hover {
+      background: color-mix(in oklab, var(--color-accentNonContentSoft), rgba(0, 0, 0, 0) 50%);
+    }
   }
   &.btn-select {
     background: none;
@@ -192,6 +209,9 @@ input[type=password] {
     text-align: left;
     position: relative;
     width: 100%;
+    &:hover {
+      background: color-mix(in oklab, var(--color-card), white 60%);
+    }
     &:after {
       display: block;
       font-family: "Material Symbols Rounded";
@@ -203,6 +223,9 @@ input[type=password] {
   }
   &.btn-block {
     width: 100%;
+  }
+  &:hover {
+    background: color-mix(in oklab, var(--color-accentNonContentStrong), white 15%);
   }
 }
 
@@ -243,11 +266,18 @@ main {
       &[data-state='off'] {
         background: none;
         color: var(--color-neutralContentSubdued);
+        &:hover {
+          color: var(--color-neutralContentStrong);
+          background: var(--color-neutralNonContentSoft);
+        }
       }
       &[data-state='on'] {
         background: var(--color-card);
         color: var(--color-neutralContentStrong);
         box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSubdued);
+        &:hover {
+          background: color-mix(in oklab, var(--color-card), white 60%);
+        }
         .material-symbols-rounded {
           font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;          
         }
@@ -411,6 +441,9 @@ main {
 
   a {
     color: var(--color-accentContentStrong);
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   .menu {
@@ -427,11 +460,15 @@ main {
         padding: var(--space-sm) calc(var(--space-md) * 0.75);
         text-decoration: none;
         color: var(--color-neutralContentSubdued);
+        &:hover {
+          color: var(--color-neutralContentStrong);
+          background: var(--color-neutralNonContentSoft);
+        }
       }
       &.selected {
         a {
-          background: var(--color-accentNonContentSoft);
           color: var(--color-neutralContentStrong);
+          background: var(--color-accentNonContentSoft);
         }
       }
     }
@@ -585,6 +622,9 @@ main {
           display: block;
           text-align: center;
         }
+        &:hover {
+          background-color: var(--color-neutralNonContentSoft);
+        }
       }
       &:last-child {
         border: none;
@@ -618,6 +658,10 @@ main {
           text-decoration: none;
           position: relative;
           color: var(--color-neutralContentSubdued);
+          &:hover {
+            color: var(--color-neutralContentStrong);
+            background: var(--color-neutralNonContentSoft);
+          }
         }
         &.selected {
           a {
@@ -710,6 +754,11 @@ main {
     border-left: 4px solid var(--color-neutralNonContentSubdued);
     color: var(--color-neutralContentStrong);
     margin: 0;
+    a {
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 
   .checkboxes {
@@ -729,6 +778,11 @@ main {
           color: var(--color-neutralContentSubdued);
           text-decoration: line-through;
         }
+      }
+    }
+    a {
+      &:hover {
+        text-decoration: none;
       }
     }
   }
