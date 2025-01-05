@@ -192,7 +192,7 @@ input[type=password] {
     box-shadow: inset 0 0 0 1px var(--color-accentNonContentSubdued);
     color: var(--color-accentContentStrong);
     &:hover {
-      background: color-mix(in oklab, var(--color-card), white 60%);
+      background-color: var(--color-accentNonContentSoft);
     }
   }
   &.btn-soft {
@@ -276,7 +276,7 @@ main {
         color: var(--color-neutralContentStrong);
         box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSubdued);
         &:hover {
-          background: color-mix(in oklab, var(--color-card), white 60%);
+          filter: brightness(115%);
         }
         .material-symbols-rounded {
           font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;          
@@ -467,8 +467,8 @@ main {
       }
       &.selected {
         a {
-          color: var(--color-neutralContentStrong);
           background: var(--color-accentNonContentSoft);
+          color: var(--color-neutralContentStrong);
         }
       }
     }
