@@ -32,9 +32,12 @@ h2 {
 }
 
 #intro {
+  @include flex-row(var(--space-xl));
   p {
-    margin: 0 0 var(--bodyLineHeight);
+    margin: 0;
     color: var(--color-neutralContentStrong);
+    flex: 1 1 0;
+    min-width: 0;
     a {
       color: var(--color-accentContentStrong);
       &:hover {
