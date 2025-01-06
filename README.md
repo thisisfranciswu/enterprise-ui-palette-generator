@@ -25,6 +25,7 @@ In no particular order, allow user to:
 - [x] See usage instructions
 - [x] See social media thumbnail and details when shared
 - [x] Maybe see future improvements if analytics suggest interest
+- [ ] See WCAG validation
 - [ ] Learn how this works
 - [ ] Enjoy responsive layout
 - [ ] Export colors
