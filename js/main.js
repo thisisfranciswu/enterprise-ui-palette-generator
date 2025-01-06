@@ -175,7 +175,7 @@ function generatePalette() {
     // By building on lightNeutralContentStrongColor
     var darkCanvasColor = lightNeutralContentStrongColor;
     setCssColor('dark', 'canvas', '--color-canvas', darkCanvasColor);
-    var darkCardColor = adjustLuminanceToContrast(darkCanvasColor, darkCanvasColor, canvasContrast);
+    var darkCardColor = adjustLuminanceToContrast(darkCanvasColor, darkCanvasColor, canvasContrast, "increase");
     setCssColor('dark', 'card', '--color-card', darkCardColor);
 
     // Establish dark mode accent baseline colors
