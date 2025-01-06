@@ -24,6 +24,7 @@ In no particular order, allow user to:
 - [x] See impact of interactive effects
 - [x] See usage instructions
 - [x] See social media thumbnail and details when shared
+- [x] Maybe see future improvements if analytics suggest interest
 - [ ] Learn how this works
 - [ ] Enjoy responsive layout
 - [ ] Export colors
