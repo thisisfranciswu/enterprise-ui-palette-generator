@@ -4,6 +4,7 @@ import $ from 'jquery';
 import { adjustLuminanceToContrast } from '../js/adjustLuminanceToContrast.js'
 import { decreaseOpacityToContrast } from '../js/decreaseOpacityToContrast.js'
 import { setSaturation } from '../js/setSaturation.js'
+import { chartLuminanceAndContrast } from '../js/chartLuminanceAndContrast.js'
 
 const wcagNonContentContrast = 3;
 const wcagContentContrast = 4.5;
@@ -20,6 +21,8 @@ function generateRandomColor() {
 
 generateRandomColor();
 generatePalette();
+
+chartLuminanceAndContrast("#000", "#fff");
 
 $('#generateBtn').on('click', function(e) {
   generatePalette();
