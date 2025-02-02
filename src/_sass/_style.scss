@@ -142,10 +142,22 @@ form {
     top: var(--space-sm);
     left: var(--space-sm);
     position: absolute;
+    pointer-events: none;
+    z-index: 2;
   }
   input[type="text"] {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
+  }
+  input[type="color"] {
+    position: absolute;
+    left: var(--space-sm);
+    top: var(--space-sm);
+    width: var(--space-lg);
+    height: var(--space-lg);
+    border: none;
+    padding: 0;
+    z-index: 1;
   }
   .btn {
     &.btn-trailing {
@@ -315,6 +327,20 @@ main {
     line-height: 1;
     text-align: center;
     display: block;
+  }
+
+  .accent-color-group {
+    position: relative;
+
+    #accentColorPicker {
+      position: absolute;
+      top: 0;
+      // width: 1px;
+      aspect-ratio: 1;
+      height: 100%;
+      border: 1px solid red;
+      padding: 0;
+    }
   }
 
   .color-swatch {

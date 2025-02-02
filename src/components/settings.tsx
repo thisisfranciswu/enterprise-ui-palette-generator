@@ -1,4 +1,29 @@
+import { ChangeEvent, ChangeEventHandler, useEffect, useRef } from "react";
+
 export const Settings = () => {
+  const accentColorPicker = useRef<HTMLInputElement>(null);
+  const accentColorInput = useRef<HTMLInputElement>(null);
+  const miniSwatch = useRef<HTMLElement>(null);
+
+  const handleColorPickerClick: ChangeEventHandler<HTMLInputElement> = (
+    event: ChangeEvent,
+  ) => {
+    if (!accentColorInput.current || !accentColorPicker.current) return;
+    accentColorInput.current.value = (
+      event.currentTarget as HTMLInputElement
+    ).value;
+    miniSwatch.current?.style.setProperty(
+      "background-color",
+      accentColorInput.current.value,
+    );
+  };
+
+  // useEffect(() => {
+  //   accentColorPicker.current?.addEventListener("change", () =>
+  //     console.log("change"),
+  //   );
+  // }, []);
+
   return (
     <aside id="settings">
       <form>
@@ -7,8 +32,14 @@ export const Settings = () => {
         <div className="form-group">
           <label htmlFor="accentColor">Accent</label>
           <div className="decorated-input">
-            <span className="mini-swatch"></span>
-            <input type="text" id="accentColor" />
+            <input type="text" id="accentColor" ref={accentColorInput} />
+            <input
+              type="color"
+              id="accentColorPicker"
+              ref={accentColorPicker}
+              onChange={handleColorPickerClick}
+            />
+            <span className="mini-swatch" ref={miniSwatch}></span>
             <button id="randomColorBtn" className="btn btn-icon btn-trailing">
               <span className="material-symbols-rounded">shuffle</span>
             </button>
