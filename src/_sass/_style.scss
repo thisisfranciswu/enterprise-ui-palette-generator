@@ -215,6 +215,7 @@ form {
     border: none;
     padding: 0;
     z-index: 1;
+    cursor: pointer;
     @include mixins.border-radius("sm");
   }
   .btn {
