@@ -1,48 +1,4 @@
 @use "_sass/mixins";
 @use "_sass/variables";
+@use "_sass/utilities";
 @use "_sass/style";
-
-::details-content {
-  transition:
-    height 0.5s ease,
-    content-visibility 0.5s ease allow-discrete;
-  height: 0;
-  overflow: clip;
-}
-
-/* Browser supports interpolate-size */
-@supports (interpolate-size: allow-keywords) {
-  :root {
-    interpolate-size: allow-keywords;
-  }
-
-  [open]::details-content {
-    height: auto;
-  }
-}
-
-/* Fallback for browsers with no interpolate-size support */
-@supports not (interpolate-size: allow-keywords) {
-  [open]::details-content {
-    height: 150px;
-    overflow-y: scroll; /* In case the contents should be taller than 150px */
-  }
-}
-
-:root {
-  --complimentary: hsl(
-    from var(--color-seed) calc(h + 180) max(calc(100 - s), 50) calc(100 - l/2)
-  );
-  --color-seed-complimentary: light-dark(
-    var(--complimentary),
-    hsl(from var(--complimentary) h calc(s - 20) calc(l - 20))
-  ); // TODO: light dark doesn't respond currently
-  --color-seed-triad-two: hsl(
-    from var(--color-seed) calc(h + 180 + 60) max(calc(100 - s), 50)
-      calc(100 - l/2)
-  );
-  --color-seed-triad-three: hsl(
-    from var(--color-seed) calc(h + 180 - 60) max(calc(100 - s), 50)
-      calc(100 - l/2)
-  );
-}

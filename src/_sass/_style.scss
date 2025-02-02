@@ -1,13 +1,52 @@
 @use "mixins";
 
+:root {
+  --complimentary: hsl(
+    from var(--color-seed) calc(h + 180) max(calc(100 - s), 50) calc(100 - l/3)
+  );
+  --color-seed-complimentary: light-dark(
+    var(--complimentary),
+    hsl(from var(--complimentary) h calc(s - 20) calc(l - 20))
+  ); // TODO: light dark doesn't respond currently
+  --color-seed-triad-two: hsl(
+    from var(--color-seed) calc(h + 180 + 60) max(calc(100 - s), 50)
+      calc(100 - l/2)
+  );
+  --color-seed-triad-three: hsl(
+    from var(--color-seed) calc(h + 180 - 60) max(calc(100 - s), 50)
+      calc(100 - l/2)
+  );
+
+  --header-bg: var(--color-accentNonContentStrong);
+  --header-color: hsl(from var(--color-seed-complimentary) h s calc(l + 10));
+}
+
+html[data-theme="dark"] {
+  --header-bg: var(--color-card);
+  --header-color: hsl(
+    from var(--color-seed-complimentary) h calc(s - 30) calc(l - 10)
+  );
+}
+
 body {
   line-height: var(--bodyLineHeight);
-  padding: var(--space-xl);
+  padding: 0;
   font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   * {
     font-size: var(--fontSize-md);
     box-sizing: border-box;
+  }
+}
+
+header {
+  padding: 3rem 0 1rem 0;
+  margin-bottom: var(--space-xl);
+  background: var(--header-bg);
+
+  h1 {
+    color: var(--header-color);
+    filter: drop-shadow(2px 4px 3px hsl(0 0 0 / 0.1));
   }
 }
 

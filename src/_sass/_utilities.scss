@@ -1,0 +1,26 @@
+::details-content {
+  transition:
+    height 0.5s ease,
+    content-visibility 0.5s ease allow-discrete;
+  height: 0;
+  overflow: clip;
+}
+
+/* Browser supports interpolate-size */
+@supports (interpolate-size: allow-keywords) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+
+  [open]::details-content {
+    height: auto;
+  }
+}
+
+/* Fallback for browsers with no interpolate-size support */
+@supports not (interpolate-size: allow-keywords) {
+  [open]::details-content {
+    height: 150px;
+    overflow-y: scroll; /* In case the contents should be taller than 150px */
+  }
+}
