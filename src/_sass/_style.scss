@@ -377,6 +377,7 @@ main {
     .value {
       @include mixins.border-radius("sm");
       color: var(--color-neutralContentStrong);
+      cursor: pointer;
       font-size: var(--fontSize-sm);
       padding: 0 var(--space-xs);
       box-shadow: 0 0 0 1px var(--color-neutralNonContentSoft);

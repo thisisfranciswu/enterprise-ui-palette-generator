@@ -30,6 +30,7 @@ export function init() {
   initOnce = true;
   generateRandomColor();
   generatePalette();
+  makeSwatchValueCopyable();
 
   $("#generateBtn").on("click", function (e) {
     generatePalette();
@@ -40,7 +41,7 @@ export function init() {
     e.preventDefault();
     copyCSSVarsToClipboard();
     // Display a toast message
-    fireToast("CSS variables copied to clipboard!");
+    fireToast("CSS variables copied to clipboard");
   });
 
   $("#lightModeBtn").on("click", function (e) {
@@ -88,6 +89,25 @@ export function init() {
       .parent()
       .find(".mini-swatch")
       .css("background-color", color);
+  });
+}
+
+function makeSwatchValueCopyable() {
+  $(".swatch").on("click", (event) => {
+    const swatch = event.currentTarget as HTMLElement;
+    const valwrapper = swatch.querySelector(".value") as HTMLSpanElement;
+    if (!valwrapper) return;
+    const value = String(valwrapper.textContent).trim();
+    navigator.clipboard.writeText(value).then(
+      () => {
+        console.log("Async: Copying to clipboard was successful!");
+        fireToast("Color was copied to clipboard");
+      },
+      (err) => {
+        console.error("Async: Could not copy text: ", err);
+        fireToast("🤨 Error copying color to clipboard");
+      },
+    );
   });
 }
 
@@ -140,8 +160,8 @@ function createCSSRootExport() {
 }
 
 function copyCSSVarsToClipboard() {
-  const CSSRoot = createCSSRootExport();
-  navigator.clipboard.writeText(CSSRoot).then(
+  const CSSRootString = createCSSRootExport();
+  navigator.clipboard.writeText(CSSRootString).then(
     function () {
       console.log("Async: Copying to clipboard was successful!");
     },
