@@ -6,6 +6,10 @@ It draws inspiration from [Radix UI's custom color palette tool](https://www.rad
 
 [Try it out](https://thisisfranciswu.com/enterprise-ui-palette-generator/)!
 
+## Develop
+
+Use `pnpm dev` to develop. Use `pnpm build` to bundle it for production in the `/dist` folder.
+
 ## To do
 
 In no particular order, allow user to:
