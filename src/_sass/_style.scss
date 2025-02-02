@@ -130,6 +130,24 @@ form {
       );
     }
   }
+
+  summary {
+    font-size: var(--fontSize-sm);
+    margin-bottom: var(--space-sm);
+    color: var(--color-neutralContentSubdued);
+    line-height: 1;
+    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+
+    .material-symbols-rounded {
+      font-size: var(--fontSize-xs);
+      line-height: var(--bodyLineHeight);
+      margin-right: var(--space-xs);
+    }
+  }
 }
 
 .decorated-input {
@@ -158,6 +176,7 @@ form {
     border: none;
     padding: 0;
     z-index: 1;
+    @include mixins.border-radius("sm");
   }
   .btn {
     &.btn-trailing {

@@ -60,41 +60,47 @@ export const Settings = () => {
             .
           </span>
         </div>
+        <details>
+          <summary>
+            <span className="material-symbols-outlined">settings</span>
+            Settings
+          </summary>
 
-        <div className="form-group">
-          <label htmlFor="canvasContrast">Canvas contrast</label>
-          <input type="text" id="canvasContrast" defaultValue="1.1" />
-        </div>
+          <div className="form-group">
+            <label htmlFor="canvasContrast">Canvas contrast</label>
+            <input type="text" id="canvasContrast" defaultValue="1.1" />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="cardContrast">Card contrast</label>
-          <input type="text" id="cardContrast" defaultValue="1.033" />
-        </div>
+          <div className="form-group">
+            <label htmlFor="cardContrast">Card contrast</label>
+            <input type="text" id="cardContrast" defaultValue="1.033" />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="softContrast">Soft contrast</label>
-          <input type="text" id="softContrast" defaultValue="1.1" />
-        </div>
+          <div className="form-group">
+            <label htmlFor="softContrast">Soft contrast</label>
+            <input type="text" id="softContrast" defaultValue="1.1" />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="strongContrast">Strong contrast</label>
-          <input type="text" id="strongContrast" defaultValue="1.7" />
-        </div>
+          <div className="form-group">
+            <label htmlFor="strongContrast">Strong contrast</label>
+            <input type="text" id="strongContrast" defaultValue="1.7" />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="neutralSaturation">Neutral saturation</label>
-          <input type="text" id="neutralSaturation" defaultValue="0.333" />
-        </div>
+          <div className="form-group">
+            <label htmlFor="neutralSaturation">Neutral saturation</label>
+            <input type="text" id="neutralSaturation" defaultValue="0.333" />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="neutralContrast">Neutral contrast</label>
-          <input type="text" id="neutralContrast" defaultValue="1.3" />
-        </div>
+          <div className="form-group">
+            <label htmlFor="neutralContrast">Neutral contrast</label>
+            <input type="text" id="neutralContrast" defaultValue="1.3" />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="darkModeSaturation">Dark mode saturation</label>
-          <input type="text" id="darkModeSaturation" defaultValue="0.666" />
-        </div>
+          <div className="form-group">
+            <label htmlFor="darkModeSaturation">Dark mode saturation</label>
+            <input type="text" id="darkModeSaturation" defaultValue="0.666" />
+          </div>
+        </details>
 
         <button id="generateBtn" className="btn">
           Generate
