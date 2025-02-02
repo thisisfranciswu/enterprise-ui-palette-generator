@@ -21,6 +21,12 @@ export const Palette = () => {
         <figure className="color-swatch">
           <figcaption>Seed</figcaption>
           <Swatch id="seed" />
+          <span
+            className="accent-contrast sample"
+            title="complimentary color"
+          ></span>
+          <span className="accent-triad-two sample" title="triad-1"></span>
+          <span className="accent-triad-three sample" title="triad-2"></span>
         </figure>
       </div>
 

@@ -363,13 +363,45 @@ main {
   }
 
   .color-swatch {
+    position: relative;
     margin: 0;
+    isolation: isolate;
+
     figcaption {
       @include mixins.font-size("sm");
       margin-bottom: var(--space-sm);
       color: var(--color-neutralContentSubdued);
       line-height: 1;
       text-align: center;
+    }
+
+    .sample {
+      --width: 30px;
+      --start: 150px;
+      --gap: 20px;
+      position: absolute;
+      bottom: -10px;
+      right: var(--start);
+      width: var(--width);
+      height: var(--width);
+      z-index: 2;
+      // box-shadow:
+      //   0 0 0 5px var(--color-accentContentBaseline),
+      //   0 0 0 7px white;
+
+      &.accent-contrast {
+        background-color: var(--color-seed-complimentary);
+      }
+
+      &.accent-triad-two {
+        right: calc(var(--start) - (var(--width) + var(--gap)));
+        background-color: var(--color-seed-triad-two);
+      }
+
+      &.accent-triad-three {
+        right: calc(var(--start) - ((var(--width) + var(--gap)) * 2));
+        background-color: var(--color-seed-triad-three);
+      }
     }
   }
 

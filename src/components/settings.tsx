@@ -40,7 +40,11 @@ export const Settings = () => {
               onChange={handleColorPickerClick}
             />
             <span className="mini-swatch" ref={miniSwatch}></span>
-            <button id="randomColorBtn" className="btn btn-icon btn-trailing">
+            <button
+              id="randomColorBtn"
+              className="btn btn-icon btn-trailing"
+              title="Click to shuffle"
+            >
               <span className="material-symbols-rounded">shuffle</span>
             </button>
           </div>

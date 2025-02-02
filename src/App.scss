@@ -28,3 +28,21 @@
     overflow-y: scroll; /* In case the contents should be taller than 150px */
   }
 }
+
+:root {
+  --complimentary: hsl(
+    from var(--color-seed) calc(h + 180) max(calc(100 - s), 50) calc(100 - l/2)
+  );
+  --color-seed-complimentary: light-dark(
+    var(--complimentary),
+    hsl(from var(--complimentary) h calc(s - 20) calc(l - 20))
+  ); // TODO: light dark doesn't respond currently
+  --color-seed-triad-two: hsl(
+    from var(--color-seed) calc(h + 180 + 60) max(calc(100 - s), 50)
+      calc(100 - l/2)
+  );
+  --color-seed-triad-three: hsl(
+    from var(--color-seed) calc(h + 180 - 60) max(calc(100 - s), 50)
+      calc(100 - l/2)
+  );
+}
