@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, useEffect, useRef } from "react";
+import { ChangeEvent, ChangeEventHandler, useRef } from "react";
 
 export const Settings = () => {
   const accentColorPicker = useRef<HTMLInputElement>(null);

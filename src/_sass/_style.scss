@@ -16,6 +16,12 @@
     from var(--color-seed) calc(h + 180 - 60) max(calc(100 - s), 50)
       calc(100 - l/2)
   );
+  --color-complimentary-triad-two: hsl(
+    from var(--color-seed-complimentary) calc(h + 180 + 60) s l
+  );
+  --color-complimentary-triad-three: hsl(
+    from var(--color-seed-complimentary) calc(h + 180 - 60) s l
+  );
 
   --header-bg: var(--color-accentNonContentStrong);
   --header-color: hsl(from var(--color-seed-complimentary) h s calc(l + 10));
@@ -46,7 +52,7 @@ header {
 
   h1 {
     color: var(--header-color);
-    filter: drop-shadow(2px 4px 3px hsl(0 0 0 / 0.1));
+    filter: drop-shadow(2px 4px 3px hsl(0 0% 0% / 0.1));
   }
 }
 
@@ -417,7 +423,7 @@ main {
 
     .sample {
       --width: 30px;
-      --start: 150px;
+      --start: 250px;
       --gap: 20px;
       position: absolute;
       bottom: -10px;
@@ -442,6 +448,16 @@ main {
       &.accent-triad-three {
         right: calc(var(--start) - ((var(--width) + var(--gap)) * 2));
         background-color: var(--color-seed-triad-three);
+      }
+
+      &.complimentary-triad-two {
+        right: calc(var(--start) - ((var(--width) + var(--gap)) * 3));
+        background-color: var(--color-complimentary-triad-two);
+      }
+
+      &.complimentary-triad-three {
+        right: calc(var(--start) - ((var(--width) + var(--gap)) * 4));
+        background-color: var(--color-complimentary-triad-three);
       }
     }
   }

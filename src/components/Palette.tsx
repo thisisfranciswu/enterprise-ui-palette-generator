@@ -27,6 +27,14 @@ export const Palette = () => {
           ></span>
           <span className="accent-triad-two sample" title="triad-1"></span>
           <span className="accent-triad-three sample" title="triad-2"></span>
+          <span
+            className="complimentary-triad-two sample"
+            title="tetrad-1"
+          ></span>
+          <span
+            className="complimentary-triad-three sample"
+            title="tetrad-2"
+          ></span>
         </figure>
       </div>
 
