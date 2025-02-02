@@ -1,7 +1,10 @@
+@use "mixins";
+
 body {
   line-height: var(--bodyLineHeight);
   padding: var(--space-xl);
-  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   * {
     font-size: var(--fontSize-md);
     box-sizing: border-box;
@@ -9,7 +12,7 @@ body {
 }
 
 .container {
-  @include flex-col(var(--space-xl));
+  @include mixins.flex-col(var(--space-xl));
   max-width: 1136px;
   margin: 0 auto;
 }
@@ -31,7 +34,7 @@ h2 {
 }
 
 #intro {
-  @include flex-row(var(--space-xl));
+  @include mixins.flex-row(var(--space-xl));
   p {
     margin: 0;
     color: var(--color-neutralContentStrong);
@@ -50,7 +53,7 @@ h2 {
 }
 
 #aside-and-main {
-  @include flex-row(var(--space-xl));
+  @include mixins.flex-row(var(--space-xl));
   #settings {
     flex: 1 1 0;
   }
@@ -67,7 +70,7 @@ h2 {
 #settings form,
 #palette,
 #demo {
-  @include flex-col(var(--space-md));
+  @include mixins.flex-col(var(--space-md));
 }
 
 form {
@@ -91,10 +94,10 @@ form {
     }
   }
   .form-row {
-    @include flex-row(var(--space-xs));
+    @include mixins.flex-row(var(--space-xs));
   }
   .or {
-    @include flex-row(var(--space-md));
+    @include mixins.flex-row(var(--space-md));
     margin: 0;
     span {
       font-size: var(--fontSize-sm);
@@ -132,7 +135,7 @@ form {
 .decorated-input {
   position: relative;
   .mini-swatch {
-    @include border-radius("sm");
+    @include mixins.border-radius("sm");
     box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSoft);
     width: var(--space-lg);
     height: var(--space-lg);
@@ -140,13 +143,13 @@ form {
     left: var(--space-sm);
     position: absolute;
   }
-  input[type='text'] {
+  input[type="text"] {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
   }
   .btn {
     &.btn-trailing {
-      @include border-radius("mx");
+      @include mixins.border-radius("mx");
       padding: var(--space-sm);
       color: var(--color-neutralContentSubdued);
       position: absolute;
@@ -164,10 +167,10 @@ form {
   }
 }
 
-input[type=text],
-input[type=email],
-input[type=password] {
-  @include border-radius("md");
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  @include mixins.border-radius("md");
   background: var(--color-card);
   box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSubdued);
   padding: var(--space-sm) calc(var(--space-md) * 0.75);
@@ -182,7 +185,7 @@ input[type=password] {
 }
 
 .btn {
-  @include border-radius("md");
+  @include mixins.border-radius("md");
   padding: var(--space-sm) var(--space-md);
   background-color: var(--color-accentNonContentStrong);
   color: var(--color-card);
@@ -201,7 +204,11 @@ input[type=password] {
     background: var(--color-accentNonContentSoft);
     color: var(--color-accentContentStrong);
     &:hover {
-      background: color-mix(in oklab, var(--color-accentNonContentSoft), rgba(0, 0, 0, 0) 50%);
+      background: color-mix(
+        in oklab,
+        var(--color-accentNonContentSoft),
+        rgba(0, 0, 0, 0) 50%
+      );
     }
   }
   &.btn-select {
@@ -227,29 +234,32 @@ input[type=password] {
     width: 100%;
   }
   &:hover {
-    background: color-mix(in oklab, var(--color-accentNonContentStrong), white 15%);
+    background: color-mix(
+      in oklab,
+      var(--color-accentNonContentStrong),
+      white 15%
+    );
   }
 }
 
 main {
-  @include flex-col(var(--space-xl));
+  @include mixins.flex-col(var(--space-xl));
 }
 
 #palette {
+  @include mixins.flex-col(var(--space-md));
+  @include mixins.border-radius("md");
 
-  @include flex-col(var(--space-md));
-  @include border-radius("md");
-  
   .heading {
-    @include flex-row(var(--space-md));
+    @include mixins.flex-row(var(--space-md));
     h2 {
       flex: 1 1 auto;
     }
   }
 
   #toggleMode {
-    @include border-radius("md");
-    @include flex-row(0);
+    @include mixins.border-radius("md");
+    @include mixins.flex-row(0);
     display: inline-flex;
     width: auto;
     flex: 0 1 auto;
@@ -265,7 +275,7 @@ main {
         float: left;
         display: block;
       }
-      &[data-state='off'] {
+      &[data-state="off"] {
         background: none;
         color: var(--color-neutralContentSubdued);
         &:hover {
@@ -273,7 +283,7 @@ main {
           background: var(--color-neutralNonContentSoft);
         }
       }
-      &[data-state='on'] {
+      &[data-state="on"] {
         background: var(--color-card);
         color: var(--color-neutralContentStrong);
         box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSubdued);
@@ -281,21 +291,25 @@ main {
           filter: brightness(115%);
         }
         .material-symbols-rounded {
-          font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;          
+          font-variation-settings:
+            "FILL" 1,
+            "wght" 300,
+            "GRAD" 0,
+            "opsz" 24;
         }
       }
     }
   }
 
   .palette-group {
-    @include flex-col(var(--space-sm));
-    @include border-radius("md");
+    @include mixins.flex-col(var(--space-sm));
+    @include mixins.border-radius("md");
     box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSubdued);
     padding: var(--space-md);
   }
 
   .palette-heading {
-    @include font-size("md");
+    @include mixins.font-size("md");
     color: var(--color-neutralContentSubdued);
     font-weight: bold;
     line-height: 1;
@@ -306,7 +320,7 @@ main {
   .color-swatch {
     margin: 0;
     figcaption {
-      @include font-size("sm");
+      @include mixins.font-size("sm");
       margin-bottom: var(--space-sm);
       color: var(--color-neutralContentSubdued);
       line-height: 1;
@@ -315,7 +329,7 @@ main {
   }
 
   .row {
-    @include flex-row(var(--space-xs));
+    @include mixins.flex-row(var(--space-xs));
     > * {
       flex-grow: 1;
       width: 100%;
@@ -323,11 +337,11 @@ main {
   }
 
   .col {
-    @include flex-col(var(--space-md));
+    @include mixins.flex-col(var(--space-md));
   }
 
   .swatch {
-    @include border-radius("sm");
+    @include mixins.border-radius("sm");
     height: 3rem;
     width: 100%;
     border: none;
@@ -335,7 +349,7 @@ main {
     overflow: hidden;
     position: relative;
     .value {
-      @include border-radius("sm");
+      @include mixins.border-radius("sm");
       color: var(--color-neutralContentStrong);
       font-size: var(--fontSize-sm);
       padding: 0 var(--space-xs);
@@ -352,7 +366,7 @@ main {
       content: "";
     }
     .color {
-      @include border-radius("md");
+      @include mixins.border-radius("md");
       box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSoft);
       display: block;
       height: 100%;
@@ -392,45 +406,77 @@ main {
   #contentGroup {
     flex: 2 1 0;
   }
-
 }
 
-#seed > .color { background-color: var(--color-seed); }
-#canvas > .color { background-color: var(--color-canvas); }
-#card > .color { background-color: var(--color-card); }
-#accentNonContentBaseline > .color { background-color: var(--color-accentNonContentBaseline); }
-#accentContentBaseline > .color { background-color: var(--color-accentContentBaseline); }
-#accentNonContentSoft > .color { background-color: var(--color-accentNonContentSoft); }
-#accentNonContentSubdued > .color { background-color: var(--color-accentNonContentSubdued); }
-#accentNonContentStrong > .color { background-color: var(--color-accentNonContentStrong); }
-#accentContentSubdued > .color { background-color: var(--color-accentContentSubdued); }
-#accentContentStrong > .color { background-color: var(--color-accentContentStrong); }
-#neutralNonContentSoft > .color { background-color: var(--color-neutralNonContentSoft); }
-#neutralNonContentSubdued > .color { background-color: var(--color-neutralNonContentSubdued); }
-#neutralNonContentStrong > .color { background-color: var(--color-neutralNonContentStrong); }
-#neutralContentSubdued > .color { background-color: var(--color-neutralContentSubdued); }
-#neutralContentStrong > .color { background-color: var(--color-neutralContentStrong); }
+#seed > .color {
+  background-color: var(--color-seed);
+}
+#canvas > .color {
+  background-color: var(--color-canvas);
+}
+#card > .color {
+  background-color: var(--color-card);
+}
+#accentNonContentBaseline > .color {
+  background-color: var(--color-accentNonContentBaseline);
+}
+#accentContentBaseline > .color {
+  background-color: var(--color-accentContentBaseline);
+}
+#accentNonContentSoft > .color {
+  background-color: var(--color-accentNonContentSoft);
+}
+#accentNonContentSubdued > .color {
+  background-color: var(--color-accentNonContentSubdued);
+}
+#accentNonContentStrong > .color {
+  background-color: var(--color-accentNonContentStrong);
+}
+#accentContentSubdued > .color {
+  background-color: var(--color-accentContentSubdued);
+}
+#accentContentStrong > .color {
+  background-color: var(--color-accentContentStrong);
+}
+#neutralNonContentSoft > .color {
+  background-color: var(--color-neutralNonContentSoft);
+}
+#neutralNonContentSubdued > .color {
+  background-color: var(--color-neutralNonContentSubdued);
+}
+#neutralNonContentStrong > .color {
+  background-color: var(--color-neutralNonContentStrong);
+}
+#neutralContentSubdued > .color {
+  background-color: var(--color-neutralContentSubdued);
+}
+#neutralContentStrong > .color {
+  background-color: var(--color-neutralContentStrong);
+}
 
 #canvas {
-
-  @include border-radius("md");
-  @include flex-row(var(--space-lg));
+  @include mixins.border-radius("md");
+  @include mixins.flex-row(var(--space-lg));
   padding: var(--space-lg);
   background-color: var(--color-canvas);
   > .col {
-    @include flex-col(var(--space-lg));
+    @include mixins.flex-col(var(--space-lg));
     flex: 1 1 0;
     min-width: 0;
   }
-  
+
   .material-symbols-rounded {
     font-size: var(--fontSize-lg);
-    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    font-variation-settings:
+      "FILL" 0,
+      "wght" 300,
+      "GRAD" 0,
+      "opsz" 24;
   }
 
   .card {
-    @include border-radius("md");
-    @include elevation("high");
+    @include mixins.border-radius("md");
+    @include mixins.elevation("high");
     background-color: var(--color-card);
     padding: var(--space-md);
     > * {
@@ -449,7 +495,7 @@ main {
   }
 
   .menu {
-    @include border-radius("md");
+    @include mixins.border-radius("md");
     box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSubdued);
     padding: 0;
     margin: 0 0 inherit;
@@ -477,8 +523,8 @@ main {
   }
 
   .alert {
-    @include flex-row(var(--space-md));
-    @include border-radius("md");
+    @include mixins.flex-row(var(--space-md));
+    @include mixins.border-radius("md");
     color: var(--color-accentContentStrong);
     background: var(--color-accentNonContentSoft);
     padding: calc(var(--space-md) * 0.75) var(--space-md);
@@ -490,7 +536,7 @@ main {
   }
 
   .tag {
-    @include border-radius("mx");
+    @include mixins.border-radius("mx");
     color: var(--color-accentContentStrong);
     background: var(--color-accentNonContentSoft);
     padding: 0 var(--space-sm);
@@ -503,8 +549,8 @@ main {
     }
   }
 
-  input[type=checkbox],
-  input[type=radio] {
+  input[type="checkbox"],
+  input[type="radio"] {
     appearance: none;
     background: var(--color-card);
     box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSubdued);
@@ -524,8 +570,8 @@ main {
       top: 0;
     }
   }
-  input[type=checkbox] {
-    @include border-radius("sm");
+  input[type="checkbox"] {
+    @include mixins.border-radius("sm");
     &:checked {
       background: var(--color-accentNonContentStrong);
       box-shadow: none;
@@ -540,7 +586,7 @@ main {
       }
     }
     &[role="switch"] {
-      @include border-radius("mx");
+      @include mixins.border-radius("mx");
       color: var(--color-card);
       background: var(--color-neutralNonContentSubdued);
       -webkit-appearance: none;
@@ -552,7 +598,7 @@ main {
       vertical-align: text-bottom;
       box-shadow: none;
       &:before {
-        @include border-radius("mx");
+        @include mixins.border-radius("mx");
         background: var(--color-card);
         content: "";
         border: none;
@@ -571,12 +617,12 @@ main {
       }
     }
   }
-  input[type=radio] {
-    @include border-radius("mx");
+  input[type="radio"] {
+    @include mixins.border-radius("mx");
     &:checked {
       box-shadow: inset 0 0 0 1px var(--color-accentNonContentStrong);
       &:before {
-        @include border-radius("mx");
+        @include mixins.border-radius("mx");
         background: var(--color-accentNonContentStrong);
         margin: 4px;
       }
@@ -584,9 +630,9 @@ main {
   }
 
   .media {
-    @include flex-row(var(--space-md));
+    @include mixins.flex-row(var(--space-md));
     img {
-      @include border-radius("md");
+      @include mixins.border-radius("md");
       display: block;
       width: 2.8418rem;
       height: 2.8418rem;
@@ -601,18 +647,18 @@ main {
       color: var(--color-neutralContentStrong);
     }
     .text-sm {
-      @include font-size("sm");
+      @include mixins.font-size("sm");
       color: var(--color-neutralContentSubdued);
     }
   }
 
   .toolbar {
-    @include flex-row(0);
-    @include border-radius("md");
+    @include mixins.flex-row(0);
+    @include mixins.border-radius("md");
     box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSubdued);
     overflow: hidden;
     .btn-group {
-      @include flex-row(0);
+      @include mixins.flex-row(0);
       border-right: 1px solid var(--color-neutralNonContentSubdued);
       .btn {
         background: none;
@@ -635,8 +681,8 @@ main {
   }
 
   .toast {
-    @include border-radius("md");
-    @include elevation("high");
+    @include mixins.border-radius("md");
+    @include mixins.elevation("high");
     padding: calc(var(--space-md) * 0.75) var(--space-md);
     color: var(--color-card);
     background: var(--color-neutralContentStrong);
@@ -644,7 +690,7 @@ main {
 
   .nav {
     &.nav-tabs {
-      @include flex-row(0);
+      @include mixins.flex-row(0);
       box-sizing: border-box;
       border-bottom: 1px solid var(--color-neutralNonContentSubdued);
       margin: 0;
@@ -685,9 +731,9 @@ main {
   }
 
   .avatars {
-    overflow: hidden;   
+    overflow: hidden;
     .avatar {
-      @include border-radius("mx");
+      @include mixins.border-radius("mx");
       width: var(--space-xl);
       height: var(--space-xl);
       line-height: var(--space-xl);
@@ -722,11 +768,17 @@ main {
       &.avatar-icon {
         span {
           font-size: calc(var(--fontSize-md) * 1.5);
-          font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+          font-variation-settings:
+            "FILL" 1,
+            "wght" 300,
+            "GRAD" 0,
+            "opsz" 24;
           line-height: var(--space-xl);
         }
         &.avatar-solid {
-          span { color: var(--color-card); }
+          span {
+            color: var(--color-card);
+          }
         }
         &.avatar-soft {
           &.avatar-subdued {
@@ -764,12 +816,12 @@ main {
   }
 
   .checkboxes {
-    @include border-radius("md");
+    @include mixins.border-radius("md");
     background: var(--color-neutralNonContentSoft);
     padding: var(--space-md);
     .form-check {
-      @include flex-row(var(--space-sm));
-      input[type=checkbox] {
+      @include mixins.flex-row(var(--space-sm));
+      input[type="checkbox"] {
         flex: none;
       }
       label {
@@ -788,19 +840,28 @@ main {
       }
     }
   }
-
 }
 
-[data-theme='light'] {
-  body { background-color: #fff; }
-  #palette .swatch .value { background: #fff; }
+[data-theme="light"] {
+  body {
+    background-color: #fff;
+  }
+  #palette .swatch .value {
+    background: #fff;
+  }
 }
-[data-theme='dark'] {
-  body { background-color: #000; }
-  #palette .swatch .value { background: #000; }
+[data-theme="dark"] {
+  body {
+    background-color: #000;
+  }
+  #palette .swatch .value {
+    background: #000;
+  }
   #canvas .card {
     box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSoft);
   }
 }
 
-.hidden-social-media-thumbnail { display: none; }
+.hidden-social-media-thumbnail {
+  display: none;
+}

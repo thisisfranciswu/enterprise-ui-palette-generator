@@ -1,4 +1,4 @@
-import chroma from 'chroma-js';
+import chroma from "chroma-js";
 
 /**
  * Adjusts a color's saturation to a specified percentage of its original value.
@@ -7,7 +7,7 @@ import chroma from 'chroma-js';
  * @param {number} saturation - The target saturation level as a percentage (e.g., 66 for 66%).
  * @returns {string} - The adjusted color in hexadecimal format.
  */
-export function setSaturation(color, saturation) {
+export function setSaturation(color: chroma.ChromaInput, saturation: number) {
   // Get the HSL components of the color
   const [h, s, l] = chroma(color).hsl();
 

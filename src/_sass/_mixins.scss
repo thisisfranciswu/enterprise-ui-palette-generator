@@ -1,0 +1,25 @@
+@mixin border-radius($size) {
+  border-radius: var(--borderRadius-#{$size});
+}
+
+@mixin font-size($size) {
+  font-size: var(--fontSize-#{$size});
+}
+
+@mixin flex-col($gap) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  width: 100%;
+}
+
+@mixin flex-row($gap) {
+  display: flex;
+  flex-direction: row;
+  gap: $gap;
+  width: 100%;
+}
+
+@mixin elevation($elevation) {
+  box-shadow: var(--elevation-#{$elevation});
+}

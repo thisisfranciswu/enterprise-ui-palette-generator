@@ -1,7 +1,10 @@
-import chroma from 'chroma-js';
+import chroma from "chroma-js";
 
-export function decreaseOpacityToContrast(fgColor, bgColor, targetContrast) {
-
+export function decreaseOpacityToContrast(
+  fgColor: chroma.ChromaInput,
+  bgColor: chroma.ChromaInput,
+  targetContrast: number,
+) {
   // console.log(fgColor, bgColor, targetContrast);
 
   const bgLuminance = chroma(bgColor).luminance(); // Get background luminance
@@ -10,17 +13,21 @@ export function decreaseOpacityToContrast(fgColor, bgColor, targetContrast) {
   let precision = stepSize * 10; // targetContrast precision
 
   // function function to calculate blended luminance
-	const blendColors = (fg, bg, opacity) => {
-	  const fgRgb = chroma(fg).rgb();
-	  const bgRgb = chroma(bg).rgb();
-	  const blendedRgb = fgRgb.map((channel, i) => 
-	    channel * opacity + bgRgb[i] * (1 - opacity)
-	  );
-	  return chroma(blendedRgb).luminance();
-	};
+  const blendColors = (
+    fg: chroma.ChromaInput,
+    bg: chroma.ChromaInput,
+    opacity: number,
+  ) => {
+    const fgRgb = chroma(fg).rgb();
+    const bgRgb = chroma(bg).rgb();
+    const blendedRgb = fgRgb.map(
+      (channel, i) => channel * opacity + bgRgb[i] * (1 - opacity),
+    ) as [number, number, number];
+    return chroma(blendedRgb).luminance();
+  };
 
   // Function to calculate contrast ratio
-  const getContrast = (fgLuminance) => {
+  const getContrast = (fgLuminance: number) => {
     const lighter = Math.max(fgLuminance, bgLuminance);
     const darker = Math.min(fgLuminance, bgLuminance);
     return (lighter + 0.05) / (darker + 0.05);
@@ -31,15 +38,20 @@ export function decreaseOpacityToContrast(fgColor, bgColor, targetContrast) {
   var adjustedOpacity = 1; // Start with full opacity
   var iteration = 0;
   var maxIterations = 9999;
-  while (Math.abs(fgContrast - targetContrast) > precision && iteration != maxIterations) {
+  while (
+    Math.abs(fgContrast - targetContrast) > precision &&
+    iteration != maxIterations
+  ) {
     adjustedOpacity -= stepSize; // Reduce opacity by a step
     fgContrast = getContrast(blendColors(fgColor, bgColor, adjustedOpacity));
     iteration++;
     // console.log(adjustedOpacity, fgContrast, iteration);
   }
 
-	// Return the color with the adjusted opacity in rgba format
-	const [r, g, b] = chroma(fgColor).rgb();
+  // Return the color with the adjusted opacity in rgba format
+  const [r, g, b] = chroma(fgColor).rgb();
   // console.log(`rgba(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)}, ${adjustedOpacity.toFixed(3)})`);
-	return `rgba(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)}, ${adjustedOpacity.toFixed(3)})`;
+  return `rgba(${Math.round(r)}, ${Math.round(g)}, ${Math.round(
+    b,
+  )}, ${adjustedOpacity.toFixed(3)})`;
 }

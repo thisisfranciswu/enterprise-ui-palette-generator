@@ -1,0 +1,26 @@
+:root {
+  --bodyFontSize: 14px;
+  --bodyLineHeight: calc(var(--bodyFontSize) * 1.6);
+  --headingLineHeight: 1.15;
+
+  --borderRadius-sm: 0.125rem;
+  --borderRadius-md: 0.25rem;
+  --borderRadius-mx: 999rem;
+
+  --fontSize-lg: 1.05rem;
+  --fontSize-md: 0.875rem;
+  --fontSize-sm: 0.75rem;
+  --fontSize-xs: 0.625rem;
+  --fontSize-h1: 2.61275rem;
+  --fontSize-h2: 2.177rem;
+
+  --space-xl: 2.25rem;
+  --space-lg: 1.5rem;
+  --space-md: 1rem;
+  --space-sm: 0.5rem;
+  --space-xs: 0.25rem;
+
+  --elevation-high: 0px 0px 1px 0px rgba(0, 0, 0, 0.25),
+    0px 0.25rem 1.25rem -0.25rem rgba(0, 0, 0, 0.05),
+    0px 0.625rem 2.25rem 0px rgba(0, 0, 0, 0.0125);
+}
