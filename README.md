@@ -34,3 +34,5 @@ In no particular order, allow user to:
 - [ ] See WCAG validation
 - [ ] Learn how this works
 - [ ] Enjoy responsive layout
+- [ ] Make all color format exported be of one kind, preferably hsl
+- [ ] Add functionallity to save color and settings to localStorage for later use
