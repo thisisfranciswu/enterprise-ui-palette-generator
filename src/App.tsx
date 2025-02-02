@@ -6,11 +6,15 @@ import { DemoCol2 } from "./components/DemoCol2";
 import { DemoCol3 } from "./components/DemoCol3";
 import { DemoCol1 } from "./components/DemoCol1";
 import { init } from "./js/main";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [inited, setInited] = useState(false);
+
   useEffect(() => {
+    if (inited) return;
     init();
+    setInited(true);
   }, []);
 
   return (

@@ -13,6 +13,8 @@ const blackColor = "#000";
 // Empty color object for export
 const CSSVarsStore = { light: new Map(), dark: new Map() };
 
+let initOnce = false;
+
 // Insert the random color value into the text field
 function generateRandomColor() {
   const randomColor = chroma.random().hex().toUpperCase();
@@ -24,6 +26,8 @@ function generateRandomColor() {
 }
 
 export function init() {
+  if (initOnce) return;
+  initOnce = true;
   generateRandomColor();
   generatePalette();
 
@@ -33,8 +37,10 @@ export function init() {
   });
 
   $("#exportBtn").on("click", function (e) {
-    copyCSSVarsToClipboard();
     e.preventDefault();
+    copyCSSVarsToClipboard();
+    // Display a toast message
+    fireToast("CSS variables copied to clipboard!");
   });
 
   $("#lightModeBtn").on("click", function (e) {
@@ -83,6 +89,12 @@ export function init() {
       .find(".mini-swatch")
       .css("background-color", color);
   });
+}
+
+function fireToast(message: string) {
+  const toast = document.createElement("ui-toast");
+  toast.textContent = message;
+  document.body.appendChild(toast);
 }
 
 // Re-displ
