@@ -385,6 +385,7 @@ main {
       width: var(--width);
       height: var(--width);
       z-index: 2;
+      @include mixins.border-radius("md");
       // box-shadow:
       //   0 0 0 5px var(--color-accentContentBaseline),
       //   0 0 0 7px white;
