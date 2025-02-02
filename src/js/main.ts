@@ -93,6 +93,7 @@ export function init() {
 }
 
 function makeSwatchValueCopyable() {
+  $(".swatch").attr("title", "Click to copy");
   $(".swatch").on("click", (event) => {
     const swatch = event.currentTarget as HTMLElement;
     const valwrapper = swatch.querySelector(".value") as HTMLSpanElement;
@@ -152,8 +153,7 @@ function createCSSRootExport() {
   ]);
   const cssRootSelectorString = `:root {\n${combined
     .map(
-      ([key, value1, value2]) =>
-        `\t--${key}: light-dark(${value1}, ${value2});`,
+      ([key, value1, value2]) => `\t${key}: light-dark(${value1}, ${value2});`,
     )
     .join("\n")}\n}`;
   return cssRootSelectorString;
