@@ -18,11 +18,10 @@ export const Settings = () => {
     );
   };
 
-  // useEffect(() => {
-  //   accentColorPicker.current?.addEventListener("change", () =>
-  //     console.log("change"),
-  //   );
-  // }, []);
+  const handleInputFocus = () => {
+    if (!accentColorPicker.current || !accentColorInput.current) return;
+    setTimeout(() => accentColorPicker.current?.click(), 500);
+  };
 
   return (
     <aside id="settings">
@@ -32,7 +31,12 @@ export const Settings = () => {
         <div className="form-group">
           <label htmlFor="accentColor">Accent</label>
           <div className="decorated-input">
-            <input type="text" id="accentColor" ref={accentColorInput} />
+            <input
+              type="text"
+              id="accentColor"
+              ref={accentColorInput}
+              onFocus={handleInputFocus}
+            />
             <input
               type="color"
               id="accentColorPicker"
