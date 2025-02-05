@@ -160,8 +160,8 @@ function setCssColor(
     }
   }
   if (swatchColor.includes("NaN")) {
-    debugger;
-    throw new Error("NaN in swatchColor");
+    swatchColor.replace("NaN", "0");
+    console.error(`NaN in swatchColor. Color was ${color}`);
   }
   $swatch.attr(`data-${theme}-color`, swatchColor);
   // $swatch.find('.value').text(color); // Display the color value in the swatch
