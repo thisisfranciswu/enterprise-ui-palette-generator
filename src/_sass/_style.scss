@@ -444,7 +444,7 @@ main {
       align-items: flex-end;
 
       ui-chart {
-        filter: drop-shadow(2px 3px 3px hsl(0 0 0 / 0.3));
+        filter: drop-shadow(2px 3px 3px hsl(0 0% 0% / 0.3));
 
         html[data-theme="dark"] & ui-chart-ledgend {
           filter: none;

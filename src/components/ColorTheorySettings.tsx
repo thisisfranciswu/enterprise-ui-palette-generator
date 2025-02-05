@@ -27,6 +27,8 @@ export const ColorTheorySettings = () => {
       switch (true) {
         case hslArr[1] < 50:
           hslArr[1] = 50;
+          if (hslArr[2] < 80) hslArr[2] = 80;
+          break;
         case hslArr[2] < 80:
           hslArr[2] = 80;
           break;
