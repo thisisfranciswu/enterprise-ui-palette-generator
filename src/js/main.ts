@@ -3,6 +3,7 @@ import $ from "jquery";
 import { adjustLuminanceToContrast } from "./adjustLuminanceToContrast";
 import { decreaseOpacityToContrast } from "./decreaseOpacityToContrast";
 import { setSaturation } from "./setSaturation";
+import { nr } from "../components/ColorTheorySettings";
 
 const wcagNonContentContrast = 3;
 const wcagContentContrast = 4.5;
@@ -34,6 +35,7 @@ export function init() {
 
   $("#generateBtn").on("click", function (e) {
     generatePalette();
+    window.dispatchEvent(new CustomEvent("paletteGenerated"));
     e.preventDefault();
   });
 
@@ -141,7 +143,27 @@ function setCssColor(
   ); // Declare CSS variables in head's style element
   CSSVarsStore[theme].set(cssVariable, color); // Store color in color map for export later
   var $swatch = $(`#${swatchId}`); // Get the swatch
-  $swatch.attr(`data-${theme}-color`, color); // Ensure swatch remembers light/dark mode color
+  let swatchColor: string;
+  if (color.startsWith("#")) {
+    const hsl = chroma(color).hsl();
+    // const alpha = Math.round(chroma(color).alpha() * 100);
+    const hslString = `hsl(${nr(hsl[0], 1)} ${nr(hsl[1], 100)}% ${nr(hsl[2], 100)}%)`;
+    swatchColor = hslString; // Ensure swatch remembers light/dark mode color
+  } else {
+    try {
+      const hsl = chroma(color).hsl();
+      const alpha = chroma(color).alpha().toFixed(2);
+      const webHsl = `hsl(${Math.round(Math.max(hsl[0], 360 - hsl[0]))} ${Math.round(hsl[1] * 100)}% ${Math.round(hsl[2] * 100)}% / ${alpha})`;
+      swatchColor = webHsl;
+    } catch (error) {
+      swatchColor = color;
+    }
+  }
+  if (swatchColor.includes("NaN")) {
+    debugger;
+    throw new Error("NaN in swatchColor");
+  }
+  $swatch.attr(`data-${theme}-color`, swatchColor);
   // $swatch.find('.value').text(color); // Display the color value in the swatch
 }
 

@@ -1,37 +1,33 @@
 @use "mixins";
 
 :root {
-  --complimentary: hsl(
-    from var(--color-seed) calc(h + 180) max(calc(100 - s), 50) calc(100 - l/3)
-  );
-  --color-seed-complimentary: light-dark(
-    var(--complimentary),
-    hsl(from var(--complimentary) h calc(s - 20) calc(l - 20))
-  ); // TODO: light dark doesn't respond currently
-  --color-seed-triad-two: hsl(
-    from var(--color-seed) calc(h + 180 + 60) max(calc(100 - s), 50)
-      calc(100 - l/2)
-  );
-  --color-seed-triad-three: hsl(
-    from var(--color-seed) calc(h + 180 - 60) max(calc(100 - s), 50)
-      calc(100 - l/2)
-  );
-  --color-complimentary-triad-two: hsl(
-    from var(--color-seed-complimentary) calc(h + 180 + 60) s l
-  );
-  --color-complimentary-triad-three: hsl(
-    from var(--color-seed-complimentary) calc(h + 180 - 60) s l
-  );
+  // --complimentary: hsl(
+  //   from var(--color-seed) calc(h + 180) max(calc(100 - s), 50) calc(100 - l/3)
+  // );
+  // --color-seed-complimentary: light-dark(
+  //   var(--complimentary),
+  //   hsl(from var(--complimentary) h s l)
+  // ); // TODO: light dark doesn't respond currently
+  // --color-seed-triad-two: hsl(
+  //   from var(--color-seed-complimentary) calc(h + 60) s l
+  // );
+  // --color-seed-triad-three: hsl(
+  //   from var(--color-seed-complimentary) calc(h - 60) s l
+  // );
+  // --color-complimentary-triad-two: hsl(
+  //   from var(--color-seed-complimentary) calc(h + 180 + 60) s l
+  // );
+  // --color-complimentary-triad-three: hsl(
+  //   from var(--color-seed-complimentary) calc(h + 180 - 60) s l
+  // );
 
   --header-bg: var(--color-accentNonContentStrong);
-  --header-color: hsl(from var(--color-seed-complimentary) h s calc(l + 10));
+  --header-color: var(--complimentary);
 }
 
 html[data-theme="dark"] {
   --header-bg: var(--color-card);
-  --header-color: hsl(
-    from var(--color-seed-complimentary) h calc(s - 30) calc(l - 10)
-  );
+  --header-color: hsl(from var(--header-color) h calc(s - 30) calc(l - 10));
 }
 
 body {
@@ -53,6 +49,26 @@ header {
   h1 {
     color: var(--header-color);
     filter: drop-shadow(2px 4px 3px hsl(0 0% 0% / 0.1));
+    position: relative;
+    display: inline;
+    width: fit-content;
+
+    #arrow1 {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(2px 4px 3px hsl(0 0% 0% / 0.3));
+    }
+
+    #arrow2 {
+      position: absolute;
+      top: 0;
+      right: -10px;
+      transform: translate(-100%, 0%) scale(-30%, 30%);
+      filter: drop-shadow(2px 4px 3px hsl(0 0% 0% / 0.3));
+    }
   }
 }
 
@@ -408,6 +424,36 @@ main {
     }
   }
 
+  #colorTheory {
+    color: var(--color-neutralContentSubdued);
+    border-radius: var(--borderRadius-md);
+    box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSoft);
+    padding: 1rem;
+
+    summary {
+      font-size: var(--fontSize-sm);
+      margin-top: var(--space-md);
+      color: var(--color-neutralContentSubdued);
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    #donutCharts {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+
+      ui-chart {
+        filter: drop-shadow(2px 3px 3px hsl(0 0 0 / 0.3));
+
+        html[data-theme="dark"] & ui-chart-ledgend {
+          filter: none;
+          mix-blend-mode: difference;
+        }
+      }
+    }
+  }
+
   .color-swatch {
     position: relative;
     margin: 0;
@@ -432,32 +478,40 @@ main {
       height: var(--width);
       z-index: 2;
       @include mixins.border-radius("md");
+      transform-origin: center;
+      transition: all 0.4s;
+      background-color: var(--sample-bg-color);
       // box-shadow:
       //   0 0 0 5px var(--color-accentContentBaseline),
       //   0 0 0 7px white;
 
+      &:hover {
+        scale: 1.5;
+        border-radius: 50%;
+      }
+
       &.accent-contrast {
-        background-color: var(--color-seed-complimentary);
+        --sample-bg-color: var(--complimentary);
       }
 
       &.accent-triad-two {
         right: calc(var(--start) - (var(--width) + var(--gap)));
-        background-color: var(--color-seed-triad-two);
+        --sample-bg-color: var(--color-seed-triad-two);
       }
 
       &.accent-triad-three {
         right: calc(var(--start) - ((var(--width) + var(--gap)) * 2));
-        background-color: var(--color-seed-triad-three);
+        --sample-bg-color: var(--color-seed-triad-three);
       }
 
       &.complimentary-triad-two {
         right: calc(var(--start) - ((var(--width) + var(--gap)) * 3));
-        background-color: var(--color-complimentary-triad-two);
+        --sample-bg-color: var(--color-complimentary-triad-two);
       }
 
       &.complimentary-triad-three {
         right: calc(var(--start) - ((var(--width) + var(--gap)) * 4));
-        background-color: var(--color-complimentary-triad-three);
+        --sample-bg-color: var(--color-complimentary-triad-three);
       }
     }
   }

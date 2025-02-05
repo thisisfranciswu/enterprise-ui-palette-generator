@@ -2,3 +2,8 @@
 @use "_sass/variables";
 @use "_sass/utilities";
 @use "_sass/style";
+
+input[type="range"].slider::-webkit-slider-runnable-track {
+  height: 1px;
+  transform: translateY(-7px);
+}

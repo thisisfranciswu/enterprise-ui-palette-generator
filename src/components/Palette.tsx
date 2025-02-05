@@ -1,4 +1,6 @@
 import { Swatch } from "./Swatch";
+import { ColorTheorySettings } from "./ColorTheorySettings";
+import { ColorTheorySwatches } from "./ColorTheorySwatches";
 
 export const Palette = () => {
   return (
@@ -21,21 +23,43 @@ export const Palette = () => {
         <figure className="color-swatch">
           <figcaption>Seed</figcaption>
           <Swatch id="seed" />
-          <span
-            className="accent-contrast sample"
-            title="complimentary color"
-          ></span>
-          <span className="accent-triad-two sample" title="triad-1"></span>
-          <span className="accent-triad-three sample" title="triad-2"></span>
-          <span
-            className="complimentary-triad-two sample"
-            title="tetrad-1"
-          ></span>
-          <span
-            className="complimentary-triad-three sample"
-            title="tetrad-2"
-          ></span>
+          <ColorTheorySwatches />
         </figure>
+        <details id="colorTheory">
+          <summary>Color theory subset</summary>
+          <div id="donutCharts">
+            <ui-chart size={100}>
+              <ui-chart-ledgend
+                label="complemetary"
+                value={10}
+                color="var(--complimentary)"
+              ></ui-chart-ledgend>
+              <ui-chart-ledgend
+                label="triad[1]"
+                value={10}
+                color="var(--color-seed-triad-two)"
+              ></ui-chart-ledgend>
+              <ui-chart-ledgend
+                label="triad[2]"
+                value={10}
+                color="var(--color-seed-triad-three)"
+              ></ui-chart-ledgend>
+            </ui-chart>
+            <ColorTheorySettings />
+            <ui-chart size={100}>
+              <ui-chart-ledgend
+                label="seed triad[1]"
+                value={10}
+                color="var(--color-complimentary-triad-two)"
+              ></ui-chart-ledgend>
+              <ui-chart-ledgend
+                label="seed triad[2]"
+                value={10}
+                color="var(--color-complimentary-triad-three)"
+              ></ui-chart-ledgend>
+            </ui-chart>
+          </div>
+        </details>
       </div>
 
       <div id="backgrounds" className="row ui-swatches">

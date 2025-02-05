@@ -7,6 +7,7 @@ import { DemoCol3 } from "./components/DemoCol3";
 import { DemoCol1 } from "./components/DemoCol1";
 import { init } from "./js/main";
 import { useEffect, useState } from "react";
+import { Header } from "./components/Header";
 
 function App() {
   const [inited, setInited] = useState(false);
@@ -19,11 +20,7 @@ function App() {
 
   return (
     <>
-      <header>
-        <div className="container">
-          <h1>Accessible Color Palette Generator</h1>
-        </div>
-      </header>
+      <Header />
       <div className="container">
         <img
           src="images/social_media_thumbnail.jpg"
@@ -53,6 +50,10 @@ function App() {
               target="_blank"
             >
               GitHub
+            </a>{" "}
+            and{" "}
+            <a href="https://thisisfranciswu.com/enterprise-ui-palette-generator/">
+              original
             </a>
             .
           </p>

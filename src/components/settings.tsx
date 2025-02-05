@@ -5,7 +5,7 @@ export const Settings = () => {
   const accentColorInput = useRef<HTMLInputElement>(null);
   const miniSwatch = useRef<HTMLElement>(null);
 
-  const handleColorPickerClick: ChangeEventHandler<HTMLInputElement> = (
+  const handleColorPickerChange: ChangeEventHandler<HTMLInputElement> = (
     event: ChangeEvent,
   ) => {
     if (!accentColorInput.current || !accentColorPicker.current) return;
@@ -16,6 +16,11 @@ export const Settings = () => {
       "background-color",
       accentColorInput.current.value,
     );
+  };
+
+  const handleColorPickerClick = () => {
+    if (!accentColorInput.current || !accentColorPicker.current) return;
+    accentColorPicker.current.value = accentColorInput.current.value;
   };
 
   const handleInputFocus = () => {
@@ -41,7 +46,8 @@ export const Settings = () => {
               type="color"
               id="accentColorPicker"
               ref={accentColorPicker}
-              onChange={handleColorPickerClick}
+              onClick={handleColorPickerClick}
+              onChange={handleColorPickerChange}
             />
             <span className="mini-swatch" ref={miniSwatch}></span>
             <button
