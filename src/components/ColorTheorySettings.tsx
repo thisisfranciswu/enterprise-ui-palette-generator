@@ -31,7 +31,7 @@ export const ColorTheorySettings = () => {
           theme === "light"
             ? 100 - hslArr[1]
             : 100 - hslArr[1] - (100 - hslArr[1]) / 2,
-        l: theme === "light" ? 80 : Math.max(hslArr[2] - hslArr[2] / 3, 50),
+        l: theme === "light" ? 80 : Math.max(hslArr[2] - hslArr[2] / 3, 60),
       };
       if (isNaN(hsl.h) || isNaN(hsl.s) || isNaN(hsl.l)) return;
       const complWeb = hslTweak(hsl);
@@ -102,7 +102,7 @@ export const ColorTheorySettings = () => {
 
         <div>
           <input
-            className={style.slider}
+            className="slider"
             type="range"
             id="saturation"
             name="saturation"
@@ -116,7 +116,7 @@ export const ColorTheorySettings = () => {
 
         <div>
           <input
-            className={style.slider}
+            className="slider"
             type="range"
             id="lumina"
             name="lumina"
