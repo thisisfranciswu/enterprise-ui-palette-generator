@@ -1,23 +1,12 @@
 import { Swatch } from "./Swatch";
 import { ColorTheorySettings } from "./ColorTheorySettings";
 import { ColorTheorySwatches } from "./ColorTheorySwatches";
+import { LightDarkBtn } from "./LightDarkBtn";
 
 export const Palette = () => {
   return (
     <section id="palette">
-      <div className="heading">
-        <h2>Palette</h2>
-        <div id="toggleMode">
-          <button id="lightModeBtn" className="btn" data-state="on">
-            <span className="material-symbols-rounded">light_mode</span>
-            Light
-          </button>
-          <button id="darkModeBtn" className="btn" data-state="off">
-            <span className="material-symbols-rounded">dark_mode</span>
-            Dark
-          </button>
-        </div>
-      </div>
+      <LightDarkBtn />
 
       <div id="accent">
         <figure className="color-swatch">

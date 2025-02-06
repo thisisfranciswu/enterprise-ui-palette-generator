@@ -56,6 +56,7 @@ export function init() {
       "href",
       "/images/favicons/light/favicon-16x16.png",
     );
+    window.dispatchEvent(new CustomEvent("paletteGenerated"));
   });
 
   $("#darkModeBtn").on("click", function (e) {
@@ -68,6 +69,7 @@ export function init() {
       "href",
       "/images/favicons/dark/favicon-16x16.png",
     );
+    window.dispatchEvent(new CustomEvent("paletteGenerated"));
   });
 
   $("#randomColorBtn").on("click", function (e) {
