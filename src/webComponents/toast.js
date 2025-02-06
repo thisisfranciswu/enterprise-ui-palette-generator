@@ -56,6 +56,7 @@ class UiAlert extends BaseClass {
       margin-top: 0.5rem;
       padding: 1rem;
       pointer-events: all;
+      transform-origin: bottom right;
     }
 
     div {
@@ -86,15 +87,24 @@ class UiAlert extends BaseClass {
   firstUpdated() {
     const anim = this.animate(
       [
-        { height: "0rem", opacity: "0", padding: 0, marginTop: 0 },
         {
-          height: "2rem",
-          height: "calc-size(auto)",
           opacity: "0",
-          padding: "0.5rem",
-          marginTop: "0.5rem",
+          height: "0",
+          margin: "0rem",
+          transform: "translateX(100%) scaleY(0)",
         },
-        { opacity: "1" },
+        {
+          opacity: "0",
+          height: "0",
+          margin: "0rem",
+          transform: "translateX(100%) scaleY(0)",
+        },
+        {
+          opacity: "1",
+          height: "calc-size(auto)",
+          margin: "0.5rem",
+          transform: "translateX(0%) scaleY(1)",
+        },
       ],
       400,
     );
@@ -106,14 +116,23 @@ class UiAlert extends BaseClass {
   removeToast = () => {
     const anim = this.animate(
       [
-        { opacity: "1" },
         {
-          height: "auto",
+          opacity: 1,
           height: "calc-size(auto)",
-          opacity: "0",
-          padding: "0.5rem",
-          marginTop: "0.5rem",
-          transform: "translateY(-100%)",
+          margin: "0.5rem",
+          transform: "translateX(0%) scaleY(1)",
+        },
+        {
+          opacity: 1,
+          height: "calc-size(auto)",
+          margin: "0.5rem",
+          transform: "translateX(100%) scaleY(0)",
+        },
+        {
+          opacity: 0,
+          height: "0",
+          margin: "0",
+          transform: "translateX(100%) scaleY(0)",
         },
       ],
       500,

@@ -24,23 +24,14 @@ export const ColorTheorySettings = () => {
       let hslString = extractStringInsideParentheses(hslForWeb!)[0];
       const sep = hslString.includes(",") ? "," : " ";
       const hslArr = hslString.split(sep).map((x) => parseInt(x));
-      switch (true) {
-        case hslArr[1] < 50:
-          hslArr[1] = 50;
-          if (hslArr[2] < 80) hslArr[2] = 80;
-          break;
-        case hslArr[2] < 80:
-          hslArr[2] = 80;
-          break;
-        default:
-          hslArr[1] = hslArr[1] - 20;
-          hslArr[2] = 100 - hslArr[2];
-          break;
-      }
+
       const hsl = {
         h: (hslArr[0] + 180) % 360,
-        s: hslArr[1],
-        l: hslArr[2],
+        s:
+          theme === "light"
+            ? 100 - hslArr[1]
+            : 100 - hslArr[1] - (100 - hslArr[1]) / 2,
+        l: theme === "light" ? 80 : Math.max(hslArr[2] - hslArr[2] / 3, 50),
       };
       if (isNaN(hsl.h) || isNaN(hsl.s) || isNaN(hsl.l)) return;
       const complWeb = hslTweak(hsl);
