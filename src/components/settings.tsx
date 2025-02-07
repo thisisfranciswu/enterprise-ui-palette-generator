@@ -1,4 +1,6 @@
 import { ChangeEvent, ChangeEventHandler, useRef } from "react";
+import { copyCSSVarsToClipboard } from "../js/copyVarsToClipboard";
+import { fireToast } from "../helpers/fireToast";
 
 export const Settings = () => {
   const accentColorPicker = useRef<HTMLInputElement>(null);
@@ -26,6 +28,13 @@ export const Settings = () => {
   const handleInputFocus = () => {
     if (!accentColorPicker.current || !accentColorInput.current) return;
     setTimeout(() => accentColorPicker.current?.click(), 500);
+  };
+
+  const handleExportClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    copyCSSVarsToClipboard();
+    // Display a toast message
+    fireToast("CSS variables copied to clipboard");
   };
 
   return (
@@ -124,6 +133,7 @@ export const Settings = () => {
           id="exportBtn"
           className="btn btn-outlined btn-block"
           title="Exports CSS variables to clipboard"
+          onClick={handleExportClick}
         >
           Export
         </button>

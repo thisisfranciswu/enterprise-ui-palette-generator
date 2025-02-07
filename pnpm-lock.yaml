@@ -11,6 +11,9 @@ importers:
       chroma-js:
         specifier: ^3.1.2
         version: 3.1.2
+      jotai:
+        specifier: ^2.11.3
+        version: 2.11.3(@types/react@18.3.18)(react@19.0.0)
       jquery:
         specifier: ^3.7.1
         version: 3.7.1
@@ -1194,6 +1197,18 @@ packages:
 
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
+
+  jotai@2.11.3:
+    resolution: {integrity: sha512-B/PsewAQ0UOS5e2+TTWegUPQ3SCLPCjPY24LYUjfn2EorGlluTA2dFjVLgF1+xHLjK9Jit3y5mKHyMG3Xq/GZg==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react:
+        optional: true
 
   jquery@3.7.1:
     resolution: {integrity: sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==}
@@ -2768,6 +2783,11 @@ snapshots:
   isarray@2.0.5: {}
 
   isexe@2.0.0: {}
+
+  jotai@2.11.3(@types/react@18.3.18)(react@19.0.0):
+    optionalDependencies:
+      '@types/react': 18.3.18
+      react: 19.0.0
 
   jquery@3.7.1: {}
 

@@ -34,7 +34,9 @@ export const Palette = () => {
                 color="var(--color-seed-triad-three)"
               ></ui-chart-ledgend>
             </ui-chart>
+
             <ColorTheorySettings />
+
             <ui-chart size={100}>
               <ui-chart-ledgend
                 label="seed triad[1]"

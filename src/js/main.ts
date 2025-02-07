@@ -4,6 +4,8 @@ import { adjustLuminanceToContrast } from "./adjustLuminanceToContrast";
 import { decreaseOpacityToContrast } from "./decreaseOpacityToContrast";
 import { setSaturation } from "./setSaturation";
 import { nr } from "../components/ColorTheorySettings";
+import { generateRandomColor } from "../helpers/generateRandomolor";
+import { makeSwatchValueCopyable } from "./makeSwatchCopyable";
 
 const wcagNonContentContrast = 3;
 const wcagContentContrast = 4.5;
@@ -16,20 +18,17 @@ const CSSVarsStore = { light: new Map(), dark: new Map() };
 
 let initOnce = false;
 
-// Insert the random color value into the text field
-function generateRandomColor() {
-  const randomColor = chroma.random().hex().toUpperCase();
+export function init() {
+  if (initOnce) return;
+  initOnce = true;
+
+  const randomColor = generateRandomColor();
   $("#accentColor").val(randomColor);
   $("#accentColor")
     .parent()
     .find(".mini-swatch")
     .css("background-color", randomColor);
-}
 
-export function init() {
-  if (initOnce) return;
-  initOnce = true;
-  generateRandomColor();
   generatePalette();
   makeSwatchValueCopyable();
 
@@ -39,52 +38,24 @@ export function init() {
     e.preventDefault();
   });
 
-  $("#exportBtn").on("click", function (e) {
-    e.preventDefault();
-    copyCSSVarsToClipboard();
-    // Display a toast message
-    fireToast("CSS variables copied to clipboard");
-  });
-
-  $("#lightModeBtn").on("click", function (e) {
-    e.preventDefault();
-    $("html").attr("data-theme", "light");
-    $(this).attr("data-state", "on");
-    $("#darkModeBtn").attr("data-state", "off");
-    setSwatchValues("light");
-    $("link[rel*='icon']").attr(
-      "href",
-      "/images/favicons/light/favicon-16x16.png",
-    );
-    window.dispatchEvent(new CustomEvent("paletteGenerated"));
-  });
-
-  $("#darkModeBtn").on("click", function (e) {
-    e.preventDefault();
-    $("html").attr("data-theme", "dark");
-    $(this).attr("data-state", "on");
-    $("#lightModeBtn").attr("data-state", "off");
-    setSwatchValues("dark");
-    $("link[rel*='icon']").attr(
-      "href",
-      "/images/favicons/dark/favicon-16x16.png",
-    );
-    window.dispatchEvent(new CustomEvent("paletteGenerated"));
-  });
-
   $("#randomColorBtn").on("click", function (e) {
-    generateRandomColor();
     e.preventDefault();
+    const randomColor = generateRandomColor();
+    $("#accentColor").val(randomColor);
+    $("#accentColor")
+      .parent()
+      .find(".mini-swatch")
+      .css("background-color", randomColor);
   });
 
   $("#tryBrandColor a").on("click", function (e) {
+    e.preventDefault();
     var brandColor = $(this).attr("data-color-value") as string;
     $("#accentColor").val(brandColor);
     $("#accentColor")
       .parent()
       .find(".mini-swatch")
       .css("background-color", brandColor);
-    e.preventDefault();
   });
 
   $("#accentColor").on("change", function (e: Event) {
@@ -96,34 +67,8 @@ export function init() {
   });
 }
 
-function makeSwatchValueCopyable() {
-  $(".swatch").attr("title", "Click to copy");
-  $(".swatch").on("click", (event) => {
-    const swatch = event.currentTarget as HTMLElement;
-    const valwrapper = swatch.querySelector(".value") as HTMLSpanElement;
-    if (!valwrapper) return;
-    const value = String(valwrapper.textContent).trim();
-    navigator.clipboard.writeText(value).then(
-      () => {
-        console.log("Async: Copying to clipboard was successful!");
-        fireToast("Color was copied to clipboard");
-      },
-      (err) => {
-        console.error("Async: Could not copy text: ", err);
-        fireToast("🤨 Error copying color to clipboard");
-      },
-    );
-  });
-}
-
-function fireToast(message: string) {
-  const toast = document.createElement("ui-toast");
-  toast.textContent = message;
-  document.body.appendChild(toast);
-}
-
 // Re-displ
-function setSwatchValues(theme: "light" | "dark") {
+export function setSwatchValues(theme: "light" | "dark") {
   $(".swatch").each(function () {
     var $value = $(this).find(".value");
     $value.text(String($(this).attr(`data-${theme}-color`)));
@@ -143,7 +88,9 @@ function setCssColor(
     `[data-theme="${theme}"] { ${cssVariable}: ${color}; }`,
     styleElement.sheet.cssRules.length,
   ); // Declare CSS variables in head's style element
+
   CSSVarsStore[theme].set(cssVariable, color); // Store color in color map for export later
+
   var $swatch = $(`#${swatchId}`); // Get the swatch
   let swatchColor: string;
   if (color.startsWith("#")) {
@@ -169,7 +116,7 @@ function setCssColor(
   // $swatch.find('.value').text(color); // Display the color value in the swatch
 }
 
-function createCSSRootExport() {
+export function createCSSRootExport() {
   const lightVars = Array.from(CSSVarsStore.light.entries());
   const combined = lightVars.map((item) => [
     ...item,
@@ -181,18 +128,6 @@ function createCSSRootExport() {
     )
     .join("\n")}\n}`;
   return cssRootSelectorString;
-}
-
-function copyCSSVarsToClipboard() {
-  const CSSRootString = createCSSRootExport();
-  navigator.clipboard.writeText(CSSRootString).then(
-    function () {
-      console.log("Async: Copying to clipboard was successful!");
-    },
-    function (err) {
-      console.error("Async: Could not copy text: ", err);
-    },
-  );
 }
 
 // Create theme in head's style element

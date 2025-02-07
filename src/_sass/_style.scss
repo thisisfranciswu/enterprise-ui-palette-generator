@@ -428,7 +428,7 @@ main {
   #colorTheory {
     color: var(--color-neutralContentSubdued);
     border-radius: var(--borderRadius-md);
-    box-shadow: inset 0 0 0 1px var(--color-neutralNonContentSoft);
+    box-shadow: inset 0 0 0 3px var(--color-canvas);
     padding: 1rem;
 
     summary {

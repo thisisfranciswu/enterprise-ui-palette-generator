@@ -1,39 +1,48 @@
-export const LightDarkBtn = () => {
-  //   $("#lightModeBtn").on("click", function (e) {
-  //     e.preventDefault();
-  //     $("html").attr("data-theme", "light");
-  //     $(this).attr("data-state", "on");
-  //     $("#darkModeBtn").attr("data-state", "off");
-  //     setSwatchValues("light");
-  //     $("link[rel*='icon']").attr(
-  //       "href",
-  //       "/images/favicons/light/favicon-16x16.png",
-  //     );
-  //    window.dispatchEvent(new CustomEvent("paletteGenerated"));
-  //   });
+import { useAtom } from "jotai";
+import { setSwatchValues } from "../js/main";
+import { themeAtom } from "./state/stateManager";
 
-  //   $("#darkModeBtn").on("click", function (e) {
-  //     e.preventDefault();
-  //     $("html").attr("data-theme", "dark");
-  //     $(this).attr("data-state", "on");
-  //     $("#lightModeBtn").attr("data-state", "off");
-  //     setSwatchValues("dark");
-  //     $("link[rel*='icon']").attr(
-  //       "href",
-  //       "/images/favicons/dark/favicon-16x16.png",
-  //     );
-  //    window.dispatchEvent(new CustomEvent("paletteGenerated"));
-  //   });
+export const LightDarkBtn = () => {
+  const [theme, setTheme] = useAtom(themeAtom);
+
+  const handleClick = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    const theme = target.id === "lightModeBtn" ? "light" : "dark";
+    setTheme(theme);
+    document.documentElement.setAttribute("data-theme", theme);
+    const otherTheme = theme === "light" ? "dark" : "light";
+    target.setAttribute("data-state", "on");
+    document
+      .getElementById(`${otherTheme}ModeBtn`)!
+      .setAttribute("data-state", "off");
+    // Update swatche values
+    setSwatchValues(theme);
+    // Update favicon
+    document
+      .querySelector("link[rel*='icon']")!
+      .setAttribute("href", `/images/favicons/${theme}/favicon-16x16.png`);
+    window.dispatchEvent(new CustomEvent("paletteGenerated"));
+  };
 
   return (
     <div className="heading">
-      <h2>Palette</h2>
+      <h2>Palette ({theme})</h2>
       <div id="toggleMode">
-        <button id="lightModeBtn" className="btn" data-state="on">
+        <button
+          id="lightModeBtn"
+          className="btn"
+          data-state="on"
+          onClick={handleClick}
+        >
           <span className="material-symbols-rounded">light_mode</span>
           Light
         </button>
-        <button id="darkModeBtn" className="btn" data-state="off">
+        <button
+          id="darkModeBtn"
+          className="btn"
+          data-state="off"
+          onClick={handleClick}
+        >
           <span className="material-symbols-rounded">dark_mode</span>
           Dark
         </button>

@@ -1,68 +1,65 @@
 import { useEffect, useRef, useState } from "react";
 import style from "./ColorTheorySettings.module.css";
 import { extractStringInsideParentheses } from "../helpers/extractFromParentesis";
-
-let once = false;
+import { getTheme, HslObject, useColorState } from "./state/colorState";
+import { useAtomValue } from "jotai";
+import { themeAtom } from "./state/stateManager";
 
 export const ColorTheorySettings = () => {
   const [show, setShow] = useState(false);
-  const [complimentaryHsl, setComplimentaryHsl] = useState([0, 0, 0]);
-  const lightness = useRef<HTMLInputElement>(null);
-  const saturation = useRef<HTMLInputElement>(null);
+  const lightnessInput = useRef<HTMLInputElement>(null);
+  const saturationInput = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    if (once) return;
-    console.log("once", once);
-    once = true;
+  const { getColorState, setColorState } = useColorState();
+  const theme = useAtomValue(themeAtom);
 
-    const getColors = () => {
-      const theme = document.documentElement.dataset.theme;
+  const calculateColors = () => {
+    let hsl = getColorState("logoColor", theme);
+    console.log("hsl from state", hsl);
+
+    if (!hsl) {
       const hslForWeb = document
         .getElementById("seed")!
         .getAttribute(`data-${theme}-color`);
       if (!hslForWeb) throw new Error("No hslForWeb");
       let hslString = extractStringInsideParentheses(hslForWeb!)[0];
       const sep = hslString.includes(",") ? "," : " ";
+      console.log("hslString", hslString);
       const hslArr = hslString.split(sep).map((x) => parseInt(x));
-
-      const hsl = {
+      hsl = {
         h: (hslArr[0] + 180) % 360,
         s:
           theme === "light"
             ? 100 - hslArr[1]
-            : 100 - hslArr[1] - (100 - hslArr[1]) / 2,
+            : Math.min(100 - hslArr[1] - (100 - hslArr[1]) / 2, 20),
         l: theme === "light" ? 80 : Math.max(hslArr[2] - hslArr[2] / 3, 60),
       };
-      if (isNaN(hsl.h) || isNaN(hsl.s) || isNaN(hsl.l)) return;
-      const complWeb = hslTweak(hsl);
-      console.log("complWeb", complWeb, {
-        ...hsl,
-        s: Math.round(hsl.s - 10),
-        l: Math.round(100 - hsl.l / 2),
-      });
-      updateColors(hsl);
-      setComplimentaryHsl(Object.values(Object.values(hsl)));
+      setColorState({ name: "logoColor", [theme]: hsl });
+    }
+    if (isNaN(hsl.h) || isNaN(hsl.s) || isNaN(hsl.l)) return;
+    // const complWeb = hslTweak(hsl, {}, 1);
+    // console.log("complWeb", complWeb, hsl);
+    updateColorSwatches(hsl);
 
-      const root = document.documentElement;
-      root.style.setProperty("--header-color", "var(--complimentary)");
-      if (!hsl) return;
-      lightness.current!.value = nr(hsl.l, 1).toString();
-      saturation.current!.value = nr(hsl.s, 1).toString();
-    };
+    const root = document.documentElement;
+    root.style.setProperty("--header-color", "var(--complimentary)");
+    if (!hsl) return;
+    lightnessInput.current!.value = nr(hsl.l, 1).toString();
+    saturationInput.current!.value = nr(hsl.s, 1).toString();
+  };
 
-    window.addEventListener("paletteGenerated", getColors);
-    setTimeout(getColors, 1000);
+  useEffect(() => {
+    window.addEventListener("paletteGenerated", calculateColors);
+  }, [theme, calculateColors]);
 
-    return () => {
-      window.removeEventListener("paletteGenerated", getColors);
-      once = false;
-    };
+  useEffect(() => {
+    setTimeout(calculateColors, 2000);
   }, []);
 
   /**
    * @param hsl - HSL object with s, l values between 0-100
    */
-  const updateColors = (hsl: HslObject) => {
+  const updateColorSwatches = (hsl: HslObject) => {
     const root = document.documentElement;
     root.style.setProperty("--complimentary", hslTweak(hsl, {}, 1));
     root.style.setProperty(
@@ -84,13 +81,16 @@ export const ColorTheorySettings = () => {
   };
 
   const handleChange = () => {
+    const theme = getTheme();
+    const complimentaryHsl = getColorState("logoColor", theme);
+    if (!complimentaryHsl) throw new Error("No complimentaryHsl");
     const hsl = {
-      h: complimentaryHsl[0],
-      s: nr(saturation.current!.value, 1),
-      l: nr(lightness.current!.value, 1),
+      h: complimentaryHsl.h,
+      s: nr(saturationInput.current!.value, 1),
+      l: nr(lightnessInput.current!.value, 1),
     };
-    updateColors(hsl);
-    setComplimentaryHsl(Object.values(hsl));
+    updateColorSwatches(hsl);
+    setColorState({ name: "logoColor", [theme]: hsl });
     const newHsl = hslTweak(hsl, {}, 1);
     document.documentElement.style.setProperty("--complimentary", newHsl);
   };
@@ -108,7 +108,7 @@ export const ColorTheorySettings = () => {
             name="saturation"
             min="0"
             max="100"
-            ref={saturation}
+            ref={saturationInput}
             onChange={handleChange}
           />
           <label htmlFor="saturation">Saturation</label>
@@ -122,7 +122,7 @@ export const ColorTheorySettings = () => {
             name="lumina"
             min="0"
             max="100"
-            ref={lightness}
+            ref={lightnessInput}
             onChange={handleChange}
           />
           <label htmlFor="lumina">Lumina</label>
@@ -131,7 +131,10 @@ export const ColorTheorySettings = () => {
       <button className="btn btn-outlined btn-block">
         <span
           className={style["material-symbols-rounded"]}
-          onClick={() => setShow(!show)}
+          onClick={() => {
+            console.log(getColorState("logoColor"));
+            setShow(!show);
+          }}
         >
           Tune
         </span>
@@ -192,7 +195,6 @@ export function rgbToHsl({ r, g, b, alpha }: RgbObject) {
 }
 
 type RgbObject = { r: number; g: number; b: number; alpha?: number };
-type HslObject = { h: number; s: number; l: number; alpha?: number };
 
 export const hexToRgb = (hex: string): RgbObject => {
   if (hex.length === 4) {
