@@ -23,11 +23,13 @@
 
   --header-bg: var(--color-accentNonContentStrong);
   --header-color: var(--complimentary);
+  color-scheme: light;
 }
 
 html[data-theme="dark"] {
   --header-bg: var(--color-card);
   --header-color: hsl(from var(--header-color) h calc(s - 30) calc(l - 10));
+  color-scheme: dark;
 }
 
 body {
@@ -343,9 +345,15 @@ main {
 #palette {
   @include mixins.flex-col(var(--space-md));
   @include mixins.border-radius("md");
+  position: relative;
 
   .heading {
     @include mixins.flex-row(var(--space-md));
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: light-dark(white, black);
+
     h2 {
       flex: 1 1 auto;
     }
