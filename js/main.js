@@ -4,6 +4,7 @@ import $ from 'jquery';
 import { adjustLuminanceToContrast } from '../js/adjustLuminanceToContrast.js'
 import { decreaseOpacityToContrast } from '../js/decreaseOpacityToContrast.js'
 import { setSaturation } from '../js/setSaturation.js'
+import { copyCssVariables } from '../js/copyGeneratedColors.js';
 
 const wcagNonContentContrast = 3;
 const wcagContentContrast = 4.5;
@@ -23,6 +24,11 @@ generatePalette();
 
 $('#generateBtn').on('click', function(e) {
   generatePalette();
+  e.preventDefault();
+});
+
+$('#copyBtn').on('click', function(e) {
+  copyCssVariables();
   e.preventDefault();
 });
 
@@ -85,7 +91,21 @@ function createThemeStyle(theme) {
   return style;
 }
 
+// Clear colors from css rule which are added in setCssColor.
+// This will prevent older values from getting copied.
+function clearCssColors(theme) {
+  const styleElement = document.head.querySelector(`style[data-theme="${theme}"]`);
+  if (!styleElement) return;
+
+  const { sheet } = styleElement;
+  while (sheet.cssRules.length) {
+    sheet.deleteRule(0);
+  }
+}
+
 function generatePalette() {
+  clearCssColors('light');
+  clearCssColors('dark');
 
   const accentColor = $('#accentColor').val().trim();
   const canvasContrast = $('#canvasContrast').val().trim();
